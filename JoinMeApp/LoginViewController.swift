@@ -6,70 +6,24 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var errorMessage: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
-        Auth.auth().addStateDidChangeListener(){
-            auth, user in
-            if user != nil {
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                self.emailField.text = nil
-                self.passwordField.text = nil
-                
-            }
-        }
     }
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) {
-            authResult, error in
-            if let error = error as NSError? {
-                self.errorMessage.text = "\(error.localizedDescription)"
-            } else {
-                self.errorMessage.text = ""
-            }
-        }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-    
-    @IBAction func signupButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(
-            title: "Register",
-            message: "Please register for an account",
-            preferredStyle: .alert)
-        alert.addTextField { tfEmail in
-            tfEmail.placeholder = "Please enter your email"
-            
-        }
-        alert.addTextField { tfPassword in
-            tfPassword.isSecureTextEntry = true
-            tfPassword.placeholder = "Please enter your password"
-        }
-        let saveAction = UIAlertAction(title: "Save", style: .default){ _ in
-            let emailField = alert.textFields![0]
-            let passwordField = alert.textFields![1]
-            
-            // Create a new user
-            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) {
-                authResult, error in
-                if let error = error as NSError? {
-                    self.errorMessage.text = "\(error.localizedDescription)"
-                } else {
-                    self.errorMessage.text = ""
-                }
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
-    }
+    */
+
 }
