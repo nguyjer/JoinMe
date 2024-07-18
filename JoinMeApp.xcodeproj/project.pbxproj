@@ -17,6 +17,8 @@
 		D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0922C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld */; };
 		D96BA0962C3E3C4000B44B7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D96BA0952C3E3C4000B44B7D /* Assets.xcassets */; };
 		D96BA0992C3E3C4000B44B7D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D96BA0982C3E3C4000B44B7D /* Base */; };
+		D96BA0AC2C49967F00B44B7D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */; };
+		D96BA0AE2C49A77500B44B7D /* HomeFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0AD2C49A77500B44B7D /* HomeFeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		D96BA0952C3E3C4000B44B7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D96BA0982C3E3C4000B44B7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D96BA09A2C3E3C4000B44B7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D96BA0AD2C49A77500B44B7D /* HomeFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				D96BA0AD2C49A77500B44B7D /* HomeFeedViewController.swift */,
+				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
 				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
 				D96BA0952C3E3C4000B44B7D /* Assets.xcassets */,
 				D96BA0972C3E3C4000B44B7D /* LaunchScreen.storyboard */,
@@ -158,8 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D96BA0AC2C49967F00B44B7D /* SignUpViewController.swift in Sources */,
 				D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */,
 				D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */,
+				D96BA0AE2C49A77500B44B7D /* HomeFeedViewController.swift in Sources */,
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
 				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
