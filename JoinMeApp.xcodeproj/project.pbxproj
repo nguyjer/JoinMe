@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE3FD92C49883000ACF984 /* LoginViewController.swift */; };
+		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
+		54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 54EE3FDE2C498E5200ACF984 /* FirebaseAuth */; };
 		D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */; };
 		D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */; };
 		D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54EE3FD92C49883000ACF984 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JoinMeApp.entitlements; sourceTree = "<group>"; };
 		D96BA0862C3E3C3F00B44B7D /* JoinMeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoinMeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +65,16 @@
 		D96BA0882C3E3C3F00B44B7D /* JoinMeApp */ = {
 			isa = PBXGroup;
 			children = (
+				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
 				D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */,
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
 				D96BA0952C3E3C4000B44B7D /* Assets.xcassets */,
 				D96BA0972C3E3C4000B44B7D /* LaunchScreen.storyboard */,
 				D96BA09A2C3E3C4000B44B7D /* Info.plist */,
+				54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */,
 				D96BA0922C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld */,
 			);
 			path = JoinMeApp;
@@ -86,6 +96,9 @@
 			dependencies = (
 			);
 			name = JoinMeApp;
+			packageProductDependencies = (
+				54EE3FDE2C498E5200ACF984 /* FirebaseAuth */,
+			);
 			productName = JoinMeApp;
 			productReference = D96BA0862C3E3C3F00B44B7D /* JoinMeApp.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +127,9 @@
 				Base,
 			);
 			mainGroup = D96BA07D2C3E3C3F00B44B7D;
+			packageReferences = (
+				54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D96BA0872C3E3C3F00B44B7D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -129,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D96BA0962C3E3C4000B44B7D /* Assets.xcassets in Resources */,
+				54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */,
 				D96BA0992C3E3C4000B44B7D /* Base in Resources */,
 				D96BA0912C3E3C3F00B44B7D /* Base in Resources */,
 			);
@@ -144,6 +161,7 @@
 				D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */,
 				D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */,
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
+				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +312,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JoinMeApp/JoinMeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -321,6 +340,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JoinMeApp/JoinMeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -365,6 +385,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.29.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54EE3FDE2C498E5200ACF984 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D96BA0922C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld */ = {
