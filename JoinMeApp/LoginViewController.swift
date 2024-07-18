@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  JoinMeApp
 //
-//  Created by Katherine Liang on 7/12/24.
+//  Created by Katherine Liang on 7/18/24.
 //
 
 import UIKit
