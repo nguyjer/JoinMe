@@ -83,6 +83,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             feedList.remove(at: indexPath.row)
             print("after remove")
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
             print("after delete")
             clearCoreData()
             print("after clear")
@@ -118,7 +119,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func coreData() {
         
         for currPost in feedList {
-            uploadPost(post: currPost)
+            addPost(post: currPost)
         }
     }
     
@@ -148,14 +149,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return (fetchedResults)!
     }
     
-    func uploadPost(post: PostClass) {
-        feedList.append(post)
+    func addPost(post: PostClass) {
         let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
         postTemp.setValue(post.username, forKey: "username")
         postTemp.setValue(post.location, forKey: "location")
         postTemp.setValue(post.date, forKey: "date")
         postTemp.setValue(post.descript, forKey: "descript")
         saveContext()
+    }
+    
+    func uploadPost(post: PostClass) {
+        feedList.append(post)
+        addPost(post: post)
     }
     
     
