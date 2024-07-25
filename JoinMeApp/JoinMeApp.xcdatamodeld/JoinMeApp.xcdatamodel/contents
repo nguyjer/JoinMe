@@ -5,5 +5,6 @@
         <attribute name="descript" optional="YES" attributeType="String"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <attribute name="users" optional="YES" attributeType="Transformable" customClassName="[String]"/>
     </entity>
 </model>

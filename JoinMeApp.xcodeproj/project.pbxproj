@@ -21,6 +21,7 @@
 		D96BA0AC2C49967F00B44B7D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */; };
 		D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */; };
 		D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */; };
+		D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
 		D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
+		D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */,
 				D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */,
 				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
 				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
@@ -179,6 +182,7 @@
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */,
+				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

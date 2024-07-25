@@ -9,8 +9,10 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
 
+    var delegate: UIViewController!
     
-    
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var usernameInvite: UILabel!
     
     
@@ -22,6 +24,10 @@ class PostTableViewCell: UITableViewCell {
     
     
     @IBAction func acceptButton(_ sender: Any) {
+        let otherVC = delegate as! feed
+        otherVC.acceptAction(in: self)
+        acceptButton.isHidden = true
+        statusLabel.text = "accepted"
     }
     
     

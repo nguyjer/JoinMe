@@ -12,11 +12,13 @@ class PostClass {
     let location:String
     let descript:String
     let date:String
+    var users:[String]
     
-    init(username: String, location: String, descript: String, date: String) {
+    init(username: String, location: String, descript: String, date: String, users: [String]) {
         self.username = username
         self.location = location
         self.descript = descript
         self.date = date
+        self.users = users
     }
 }

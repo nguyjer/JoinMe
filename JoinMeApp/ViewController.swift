@@ -14,10 +14,13 @@ let context = appDelegate.persistentContainer.viewContext
 
 protocol feed {
     func uploadPost(post: PostClass)
+    func acceptAction(in cell: PostTableViewCell)
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed {
     
+
+
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     
@@ -31,11 +34,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.rowHeight = 200
         
-        
         let results = retrievePosts()
         for currResult in results {
-            if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date") {
-                feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String))
+            if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date"), let users = currResult.value(forKey: "users") {
+                feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String, users: users as! [String]))
             }
         }
     }
@@ -44,6 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "uploadSegue",
            let destination = segue.destination as? UploadPostViewController {
             destination.delegate = self
+        } else if segue.identifier == "upcomingSegue",
+                  let destination = segue.destination as? UpcomingEventsViewController {
+            destination.delegate = self
+            destination.feedList = feedList
         }
     }
     
@@ -54,6 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //allows scrollable table cells
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! PostTableViewCell
+        cell.delegate = self
         
         let row = indexPath.row
         
@@ -81,14 +88,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if editingStyle == .delete {
             print("\(indexPath.row)")
             feedList.remove(at: indexPath.row)
-            print("after remove")
+
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
-            print("after delete")
+
             clearCoreData()
-            print("after clear")
+
             coreData()
-            print("after coreData()")
+
             
         } else if editingStyle == .insert {
         }
@@ -155,6 +162,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         postTemp.setValue(post.location, forKey: "location")
         postTemp.setValue(post.date, forKey: "date")
         postTemp.setValue(post.descript, forKey: "descript")
+        postTemp.setValue(post.users, forKey: "users")
         saveContext()
     }
     
@@ -163,7 +171,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         addPost(post: post)
     }
     
-    
+    func acceptAction(in cell: PostTableViewCell) {
+        print("meow")
+        if let indexPath = tableView.indexPath(for: cell){
+            print("inside")
+            feedList[indexPath.row].users.append((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!)
+            clearCoreData()
+            coreData()
+        }
+    }
     
     //temporary sign out
     @IBAction func signOutPressed(_ sender: Any) {
