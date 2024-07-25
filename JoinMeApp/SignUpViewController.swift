@@ -21,6 +21,12 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        emailTextField.autocorrectionType = .no
+        
+        numberTextField.autocorrectionType = .no
+        passwordTextField.autocorrectionType = .no
+        userTextField.autocorrectionType = .no
+        confirmTextField.autocorrectionType = .no
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {

@@ -18,7 +18,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        emailField.autocorrectionType = .no
+        passwordField.autocorrectionType = .no
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
