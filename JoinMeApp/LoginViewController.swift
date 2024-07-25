@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        emailField.placeholder = "Username"
+        emailField.placeholder = "User Email"
         passwordField.placeholder = "Password"
     }
     

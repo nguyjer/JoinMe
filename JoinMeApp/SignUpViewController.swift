@@ -46,6 +46,8 @@ class SignUpViewController: UIViewController {
                     message: "",
                     preferredStyle: .alert)
         
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        
         if passwordTextField.text != confirmTextField.text {
             alert.message = "Unsuccesful Sign Up: Password's do not match"
             present(alert, animated: true)
@@ -58,6 +60,8 @@ class SignUpViewController: UIViewController {
             if let error = error as NSError? {
                 alert.message = "\(error.localizedDescription)"
                 self.present(alert, animated: true)
+                
+                
             }
         }
     }
