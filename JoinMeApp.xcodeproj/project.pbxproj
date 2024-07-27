@@ -22,6 +22,8 @@
 		D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */; };
 		D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */; };
 		D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */; };
+		D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = D9847CF42C5464D900D0A0C0 /* SideMenu */; };
+		D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,7 @@
 		D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
 		D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
 		D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsViewController.swift; sourceTree = "<group>"; };
+		D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */,
 				54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +79,7 @@
 		D96BA0882C3E3C3F00B44B7D /* JoinMeApp */ = {
 			isa = PBXGroup;
 			children = (
+				D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */,
 				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
 				D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */,
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
@@ -113,6 +118,7 @@
 			name = JoinMeApp;
 			packageProductDependencies = (
 				54EE3FDE2C498E5200ACF984 /* FirebaseAuth */,
+				D9847CF42C5464D900D0A0C0 /* SideMenu */,
 			);
 			productName = JoinMeApp;
 			productReference = D96BA0862C3E3C3F00B44B7D /* JoinMeApp.app */;
@@ -144,6 +150,7 @@
 			mainGroup = D96BA07D2C3E3C3F00B44B7D;
 			packageReferences = (
 				54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D9847CF32C5464D900D0A0C0 /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = D96BA0872C3E3C3F00B44B7D /* Products */;
 			projectDirPath = "";
@@ -183,6 +190,7 @@
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */,
 				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
+				D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +423,14 @@
 				minimumVersion = 10.29.0;
 			};
 		};
+		D9847CF32C5464D900D0A0C0 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +438,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		D9847CF42C5464D900D0A0C0 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9847CF32C5464D900D0A0C0 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
 

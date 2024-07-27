@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import CoreData
+import SideMenu
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
@@ -17,9 +18,8 @@ protocol feed {
     func acceptAction(in cell: PostTableViewCell)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed {
-    
-
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed, MenuControllerDelegate {
+    private var sideMenu: SideMenuNavigationController?
 
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
@@ -33,6 +33,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         
         tableView.rowHeight = 200
+        let menu = SideMenuTableViewController(with: ["Location",
+                                                  "Friends list",
+                                                  "Upcoming Events",
+                                                  "Past Events",
+                                                  "Settings",
+                                                   "Logout"])
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
         
         let results = retrievePosts()
         for currResult in results {
@@ -51,6 +63,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destination.delegate = self
             destination.feedList = feedList
         }
+    }
+    
+    func didSelectMenuItem(name: String) {
+        switch name {
+            case "Location":
+                break
+            case "Friends list":
+                break
+            case "Upcoming Events":
+                performSegue(withIdentifier: "upcomingSegue", sender: self)
+                break
+            case "Past Events":
+                performSegue(withIdentifier: "pastSegue", sender: self)
+                break
+            case "Settings":
+                break
+            case "Logout":
+            do {
+                //if user is signed in it will sign them out then dismiss the current screen
+                try Auth.auth().signOut()
+                sideMenu?.dismiss(animated: true)
+                self.dismiss(animated: true)
+            } catch {
+                print("Sign out error")
+            }
+                break
+            default:
+                break
+        }
+        sideMenu?.dismiss(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,15 +223,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    //temporary sign out
-    @IBAction func signOutPressed(_ sender: Any) {
-        do {
-            //if user is signed in it will sign them out then dismiss the current screen
-            try Auth.auth().signOut()
-            self.dismiss(animated: true)
-        } catch {
-            print("Sign out error")
-        }
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        present(sideMenu!, animated: true)
     }
+
 }
 
