@@ -32,13 +32,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.dataSource = self
         
+        
         tableView.rowHeight = 200
-        let menu = SideMenuTableViewController(with: ["Location",
-                                                  "Friends list",
-                                                  "Upcoming Events",
-                                                  "Past Events",
-                                                  "Settings",
-                                                   "Logout"])
+        let menu = SideMenuTableViewController(with: ["📍Location",
+                                                  "👯Friends list",
+                                                  "🔜Upcoming Events",
+                                                  "🔚Past Events",
+                                                  "⚙️Settings",
+                                                   "✌️Logout"])
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         
@@ -67,22 +68,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func didSelectMenuItem(name: String) {
         switch name {
-            case "Location":
+            case "📍Location":
                 break
-            case "Friends list":
+            case "👯Friends list":
                 break
-            case "Upcoming Events":
+            case "🔜Upcoming Events":
                 performSegue(withIdentifier: "upcomingSegue", sender: self)
                 break
-            case "Past Events":
+            case "🔚Past Events":
                 performSegue(withIdentifier: "pastSegue", sender: self)
                 break
-            case "Settings":
+            case "⚙️Settings":
                 break
-            case "Logout":
+            case "✌️Logout":
             do {
                 //if user is signed in it will sign them out then dismiss the current screen
                 try Auth.auth().signOut()
+                // you have to dismiss the opened menu before trying to dismiss current view
                 sideMenu?.dismiss(animated: true)
                 self.dismiss(animated: true)
             } catch {
@@ -226,6 +228,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func menuButtonPressed(_ sender: Any) {
         present(sideMenu!, animated: true)
     }
-
+    
+    
+    @IBAction func bellButtonPressed(_ sender: Any) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+            granted, Error in
+            if granted {
+                print("all set")
+            } else {
+                print(Error!.localizedDescription)
+            }
+        })
+    }
+    
 }
 
