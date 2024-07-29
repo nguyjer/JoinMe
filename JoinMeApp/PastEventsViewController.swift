@@ -1,21 +1,19 @@
 //
-//  UpcomingEventsViewController.swift
+//  PastEventsViewController.swift
 //  JoinMeApp
 //
-//  Created by jeremy nguyen on 7/25/24.
+//  Created by jeremy nguyen on 7/29/24.
 //
 
 import UIKit
 import FirebaseAuth
 
-class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
+class PastEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
     var delegate: UIViewController!
     var feedList: [PostClass] = []
     var personalList: [PostClass] = []
-
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +22,7 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 200
+        
         for currPosts in feedList {
             if currPosts.users.contains((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!) {
                 print("added personal")
@@ -38,7 +37,7 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "upcomingCell", for: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "pastCell", for: indexPath) as! PostTableViewCell
         cell.delegate = self
         
         let row = indexPath.row

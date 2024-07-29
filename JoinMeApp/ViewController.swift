@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let textCellIdentifier = "postCell"
     
     var feedList:[PostClass] = []
+    var personalList:[PostClass] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                   let destination = segue.destination as? UpcomingEventsViewController {
             destination.delegate = self
             destination.feedList = feedList
+            destination.personalList = personalList
+        } else if segue.identifier == "pastSegue",
+                  let destination = segue.destination as?
+                    PastEventsViewController {
+            destination.delegate = self
+            destination.feedList = feedList
+            destination.personalList = personalList
         }
     }
     
@@ -216,10 +224,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func acceptAction(in cell: PostTableViewCell) {
-        print("meow")
         if let indexPath = tableView.indexPath(for: cell){
-            print("inside")
             feedList[indexPath.row].users.append((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!)
+            personalList.append(feedList[indexPath.row])
             clearCoreData()
             coreData()
         }

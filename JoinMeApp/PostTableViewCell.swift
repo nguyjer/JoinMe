@@ -24,6 +24,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     @IBAction func acceptButton(_ sender: Any) {
+        print("hello")
         let otherVC = delegate as! feed
         otherVC.acceptAction(in: self)
         acceptButton.isHidden = true

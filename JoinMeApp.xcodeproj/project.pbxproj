@@ -25,6 +25,7 @@
 		D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */; };
 		D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = D9847CF42C5464D900D0A0C0 /* SideMenu */; };
 		D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */; };
+		D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewController.swift; sourceTree = "<group>"; };
 		D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsViewController.swift; sourceTree = "<group>"; };
 		D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastEventsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
 				544083552C5777DB00AA603B /* MenuViewController.swift */,
 				D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */,
+				D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */,
 				D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */,
 				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
 				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
@@ -192,6 +195,7 @@
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
 				544083562C5777DB00AA603B /* MenuViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
+				D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */,
 				7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */,
 				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
 				D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */,
