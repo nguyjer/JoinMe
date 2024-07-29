@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544083562C5777DB00AA603B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544083552C5777DB00AA603B /* MenuViewController.swift */; };
 		54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE3FD92C49883000ACF984 /* LoginViewController.swift */; };
 		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
 		54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 54EE3FDE2C498E5200ACF984 /* FirebaseAuth */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		544083552C5777DB00AA603B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		54EE3FD92C49883000ACF984 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JoinMeApp.entitlements; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				544083552C5777DB00AA603B /* MenuViewController.swift */,
 				D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */,
 				D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */,
 				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
@@ -187,6 +190,7 @@
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
 				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
+				544083562C5777DB00AA603B /* MenuViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */,
 				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
