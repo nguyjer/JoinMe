@@ -7,6 +7,10 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
+
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let context = appDelegate.persistentContainer.viewContext
 
 class SignUpViewController: UIViewController {
 
@@ -31,6 +35,7 @@ class SignUpViewController: UIViewController {
             auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "signUpSegue", sender: self)
+                
                 self.userTextField.text = nil
                 self.passwordTextField.text = nil
             }
@@ -71,11 +76,47 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
 
     @IBAction func CancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
-
+    func addUser(username: String) {
+        var friends: [String] = []
+        var feed: [PostClass] = []
+        var accepted: [PostClass] = []
+        let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+        userTemp.setValue(username, forKey: "username")
+        userTemp.setValue(friends, forKey: "friends")
+        userTemp.setValue(feed, forKey: "feed")
+        userTemp.setValue(accepted, forKey: "accepted")
+        saveContext()
+    }
+    
+    //saves the current entities
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+    func retrievePosts() -> [NSManagedObject] {
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var fetchedResults: [NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            print("Error occurred while retrieving data")
+            abort()
+        }
+        return (fetchedResults)!
+    }
+    
 }

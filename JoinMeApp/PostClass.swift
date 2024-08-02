@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PostClass {
+class PostClass: NSObject {
     let username:String
     let location:String
     let descript:String
