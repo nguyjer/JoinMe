@@ -90,7 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     performSegue(withIdentifier: "pastSegue", sender: self)
                     break
                 case "Settings":
-                    break
+                    performSegue(withIdentifier: "settingsSegue", sender: self)
                 case "Logout":
                 do {
                     //if user is signed in it will sign them out then dismiss the current screen
