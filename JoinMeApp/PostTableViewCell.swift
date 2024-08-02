@@ -15,6 +15,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var usernameInvite: UILabel!
     
+    @IBOutlet weak var declineButton: UIButton!
     
     @IBOutlet weak var dateScheduled: UILabel!
     
@@ -28,11 +29,14 @@ class PostTableViewCell: UITableViewCell {
         let otherVC = delegate as! feed
         otherVC.acceptAction(in: self)
         acceptButton.isHidden = true
-        statusLabel.text = "accepted"
+        declineButton.isHidden = true
+        statusLabel.text = "Accepted"
     }
     
     
     @IBAction func declineButton(_ sender: Any) {
+        let otherVC = delegate as! feed
+        otherVC.declineAction(in: self)
     }
     
     

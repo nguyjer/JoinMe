@@ -162,10 +162,10 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-Bt-CHB">
-                                                    <rect key="frame" x="70" y="156" width="100" height="20"/>
+                                                    <rect key="frame" x="130" y="156" width="100" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -173,6 +173,7 @@
                                         <connections>
                                             <outlet property="acceptButton" destination="6iP-cv-EmF" id="gbd-Cb-0zW"/>
                                             <outlet property="dateScheduled" destination="TxK-EV-cnw" id="1C4-Xa-6nM"/>
+                                            <outlet property="declineButton" destination="HnC-9Z-GbZ" id="6YR-xN-Z0R"/>
                                             <outlet property="descriptionLabel" destination="dvj-gH-JkZ" id="aJi-KM-ljX"/>
                                             <outlet property="statusLabel" destination="iuM-Bt-CHB" id="tuP-km-DYw"/>
                                             <outlet property="usernameInvite" destination="Gx6-50-qsK" id="rKr-MH-3Mb"/>
@@ -290,8 +291,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KY5-Hi-Tfh">
-                                                    <rect key="frame" x="20" y="87" width="88" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KY5-Hi-Tfh">
+                                                    <rect key="frame" x="20" y="87" width="321" height="108"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -340,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="93C-eO-cjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="-273"/>
+            <point key="canvasLocation" x="1933.5877862595419" y="-273.23943661971833"/>
         </scene>
         <!--Upload Post View Controller-->
         <scene sceneID="EmA-U1-iN4">
@@ -552,33 +553,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3F-DF-U5S">
-                                                    <rect key="frame" x="20" y="87" width="88" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3F-DF-U5S">
+                                                    <rect key="frame" x="20" y="87" width="321" height="97"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLL-EQ-l6k">
-                                                    <rect key="frame" x="52" y="149" width="78" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="tintColor" systemColor="systemGreenColor"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Accept"/>
-                                                    <connections>
-                                                        <action selector="acceptButton:" destination="z1B-ie-1a0" eventType="touchUpInside" id="3S3-1t-ZgI"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-y0-9mB">
-                                                    <rect key="frame" x="212" y="149" width="81" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Decline"/>
-                                                    <connections>
-                                                        <action selector="declineButton:" destination="z1B-ie-1a0" eventType="touchUpInside" id="vTE-f3-moR"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KD6-M1-vD8">
                                                     <rect key="frame" x="70" y="156" width="100" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -589,7 +570,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="acceptButton" destination="aLL-EQ-l6k" id="f6n-u7-lgI"/>
                                             <outlet property="dateScheduled" destination="uar-zs-UR9" id="lWx-ZI-zDH"/>
                                             <outlet property="descriptionLabel" destination="O3F-DF-U5S" id="7Rr-3i-xPL"/>
                                             <outlet property="statusLabel" destination="KD6-M1-vD8" id="6XL-uM-V90"/>
@@ -620,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fc-L7-Z9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1964" y="502"/>
+            <point key="canvasLocation" x="1962.5954198473282" y="501.4084507042254"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

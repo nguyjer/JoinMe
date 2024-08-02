@@ -16,6 +16,7 @@ let context = appDelegate.persistentContainer.viewContext
 protocol feed {
     func uploadPost(post: PostClass)
     func acceptAction(in cell: PostTableViewCell)
+    func declineAction(in cell: PostTableViewCell)
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed, MenuControllerDelegate {
@@ -27,34 +28,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var feedList:[PostClass] = []
     var personalList:[PostClass] = []
 
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view.
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        
-//        
-//        tableView.rowHeight = 200
-//        let menu = SideMenuTableViewController(with: ["📍Location",
-//                                                  "👯Friends list",
-//                                                  "🔜Upcoming Events",
-//                                                  "🔚Past Events",
-//                                                  "⚙️Settings",
-//                                                   "✌️Logout"])
-//        menu.delegate = self
-//        sideMenu = SideMenuNavigationController(rootViewController: menu)
-//        
-//        sideMenu?.leftSide = false
-//        SideMenuManager.default.rightMenuNavigationController = sideMenu
-//        SideMenuManager.default.addPanGestureToPresent(toView: view)
-//        
-//        let results = retrievePosts()
-//        for currResult in results {
-//            if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date"), let users = currResult.value(forKey: "users") {
-//                feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String, users: users as! [String]))
-//            }
-//        }
-//    }
     override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
@@ -103,37 +76,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destination.personalList = personalList
         }
     }
-    
-//    func didSelectMenuItem(name: String) {
-//        switch name {
-//            case "📍Location":
-//                break
-//            case "👯Friends list":
-//                break
-//            case "🔜Upcoming Events":
-//                performSegue(withIdentifier: "upcomingSegue", sender: self)
-//                break
-//            case "🔚Past Events":
-//                performSegue(withIdentifier: "pastSegue", sender: self)
-//                break
-//            case "⚙️Settings":
-//                break
-//            case "✌️Logout":
-//            do {
-//                //if user is signed in it will sign them out then dismiss the current screen
-//                try Auth.auth().signOut()
-//                // you have to dismiss the opened menu before trying to dismiss current view
-//                sideMenu?.dismiss(animated: true)
-//                self.dismiss(animated: true)
-//            } catch {
-//                print("Sign out error")
-//            }
-//                break
-//            default:
-//                break
-//        }
-//        sideMenu?.dismiss(animated: true)
-//    }
     
     func didSelectMenuItem(name: String) {
             switch name {
@@ -290,6 +232,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             personalList.append(feedList[indexPath.row])
             clearCoreData()
             coreData()
+        }
+    }
+    
+    func declineAction(in cell: PostTableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell){
+            feedList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
