@@ -9,9 +9,6 @@ import UIKit
 import FirebaseAuth
 import CoreData
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
-let context = appDelegate.persistentContainer.viewContext
-
 class SignUpViewController: UIViewController {
 
     

@@ -25,8 +25,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     
-    var feedList:[PostClass] = []
-    var personalList:[PostClass] = []
+    private var feedList:[PostClass] = []
+    private var personalList:[PostClass] = []
 
     override func viewDidLoad() {
             super.viewDidLoad()
@@ -52,12 +52,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             SideMenuManager.default.addPanGestureToPresent(toView: view)
             
             let results = retrievePosts()
-            for currResult in results {
-                if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date"), let users = currResult.value(forKey: "users") {
-                    feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String, users: users as! [String]))
+//            for currResult in results {
+//                if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date"), let users = currResult.value(forKey: "users") {
+//                    feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String, users: users as! [String]))
+//                }
+//            }
+        for currResult in results {
+            if let username = currResult.value(forKey: "username") as? String {
+                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                    feedList = currResult.value(forKey: "feed") as! [PostClass]
+                    personalList = currResult.value(forKey: "accepted") as! [PostClass]
                 }
             }
         }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "uploadSegue",
@@ -158,7 +166,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // function to clear core data
     func clearCoreData() {
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         var fetchedResults: [NSManagedObject]
         
@@ -179,7 +186,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // basic function to store all of the current posts we have in our list
     func coreData() {
-        
         for currPost in feedList {
             addPost(post: currPost)
         }
@@ -199,7 +205,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func retrievePosts() -> [NSManagedObject] {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         var fetchedResults: [NSManagedObject]? = nil
         
         do {
@@ -212,13 +218,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func addPost(post: PostClass) {
-        let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
-        postTemp.setValue(post.username, forKey: "username")
-        postTemp.setValue(post.location, forKey: "location")
-        postTemp.setValue(post.date, forKey: "date")
-        postTemp.setValue(post.descript, forKey: "descript")
-        postTemp.setValue(post.users, forKey: "users")
+//        let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
+//        postTemp.setValue(post.username, forKey: "username")
+//        postTemp.setValue(post.location, forKey: "location")
+//        postTemp.setValue(post.date, forKey: "date")
+//        postTemp.setValue(post.descript, forKey: "descript")
+//        postTemp.setValue(post.users, forKey: "users")
+        let fetched = retrievePosts()
+        for user in fetched {
+            if let username = user.value(forKey: "username") as? String {
+                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                    user.setValue(feedList, forKey: "feed")
+                }
+            }
+        }
         saveContext()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let fetched = retrievePosts()
+        for user in fetched {
+            if let username = user.value(forKey: "username") as? String {
+                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                    user.setValue(feedList, forKey: "feed")
+                    user.setValue(personalList, forKey: "accepted")
+                }
+            }
+        }
     }
     
     func uploadPost(post: PostClass) {
