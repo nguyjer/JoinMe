@@ -32,7 +32,7 @@ class SignUpViewController: UIViewController {
             auth, user in
             if user != nil {
                 self.performSegue(withIdentifier: "signUpSegue", sender: self)
-                
+                self.addUser(username: self.userTextField.text!)
                 self.userTextField.text = nil
                 self.passwordTextField.text = nil
             }
@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController {
             return
         }
         //appends an @ domain to comply with firebase template
-        let username = userTextField.text! + ("@JoinMe.com")
+        let username = userTextField.text! + ("@joinme.com")
         Auth.auth().createUser(withEmail: username, password: passwordTextField.text!) {
             authResult, error in
             if let error = error as NSError? {
@@ -101,19 +101,4 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    
-    func retrievePosts() -> [NSManagedObject] {
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        var fetchedResults: [NSManagedObject]? = nil
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            print("Error occurred while retrieving data")
-            abort()
-        }
-        return (fetchedResults)!
-    }
-    
 }

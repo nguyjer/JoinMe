@@ -113,11 +113,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="195" id="cW7-MR-Ekr" customClass="PostTableViewCell" customModule="JoinMeApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="195"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="postCell" rowHeight="236" id="cW7-MR-Ekr" customClass="PostTableViewCell" customModule="JoinMeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="236"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cW7-MR-Ekr" id="A2w-sN-ECs">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="195"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username invited you + others to event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx6-50-qsK">
@@ -134,15 +134,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvj-gH-JkZ">
-                                                    <rect key="frame" x="20" y="87" width="88" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvj-gH-JkZ">
+                                                    <rect key="frame" x="20" y="87" width="321" height="79"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iP-cv-EmF">
-                                                    <rect key="frame" x="52" y="149" width="78" height="35"/>
+                                                    <rect key="frame" x="48" y="174" width="78" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" systemColor="systemGreenColor"/>
                                                     <state key="normal" title="Button"/>
@@ -152,7 +152,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnC-9Z-GbZ">
-                                                    <rect key="frame" x="212" y="149" width="81" height="35"/>
+                                                    <rect key="frame" x="209" y="174" width="81" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" title="Button"/>
@@ -162,7 +162,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuM-Bt-CHB">
-                                                    <rect key="frame" x="130" y="156" width="100" height="20"/>
+                                                    <rect key="frame" x="127" y="181" width="100" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -238,16 +238,17 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem id="3yG-39-nm3">
-                                <imageReference key="image" image="bell.fill" catalog="system" symbolScale="large"/>
+                                <imageReference key="image" image="bell" catalog="system" symbolScale="large"/>
                                 <inset key="imageInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="tintColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="bellButtonPressed:" destination="wXZ-T4-oyO" id="M11-jx-ZOv"/>
+                                    <action selector="notiBellPressed:" destination="wXZ-T4-oyO" id="0NF-tl-NKA"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="notiBell" destination="3yG-39-nm3" id="bqR-QZ-mLT"/>
                         <outlet property="tableView" destination="BoB-UJ-L2P" id="BJW-5f-vmJ"/>
                         <segue destination="jZ0-dQ-DIO" kind="show" identifier="upcomingSegue" id="XEU-Li-RYr"/>
                         <segue destination="7PE-S5-kaS" kind="show" identifier="pastSegue" id="ef2-Z7-4pw"/>
@@ -700,7 +701,7 @@
         <segue reference="CQv-UF-iP7"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="bell.fill" catalog="system" width="123" height="128"/>
+        <image name="bell" catalog="system" width="125" height="128"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="65"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>

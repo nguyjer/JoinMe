@@ -47,6 +47,7 @@ class UploadPostViewController: UIViewController {
         let newPost = PostClass(username: (Auth.auth().currentUser?.email)!, location: locationTextField.text!, descript: decriptionTextField.text!, date: dateTextField.text!, users: [usernameNoEmail!])
         let otherVC = delegate as! feed
         otherVC.uploadPost(post: newPost)
+
     }
     
 }

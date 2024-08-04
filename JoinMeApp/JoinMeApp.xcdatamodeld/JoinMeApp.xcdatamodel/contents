@@ -8,9 +8,9 @@
         <attribute name="users" optional="YES" attributeType="Transformable" customClassName="[String]"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
-        <attribute name="accepted" optional="YES" attributeType="Transformable" customClassName="[PostClass]"/>
-        <attribute name="feed" optional="YES" attributeType="Transformable" customClassName="[PostClass]"/>
-        <attribute name="friends" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="accepted" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[PostClass]"/>
+        <attribute name="feed" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[PostClass]"/>
+        <attribute name="friends" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>
 </model>

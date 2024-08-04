@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
                     preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         //added in order to meet firebases email format
-        let username = emailField.text! + ("@JoinMe.com")
+        let username = emailField.text! + ("@joinme.com")
         Auth.auth().signIn(withEmail: username, password: passwordField.text!) {
             authResult, error in
             if let error = error as NSError? {

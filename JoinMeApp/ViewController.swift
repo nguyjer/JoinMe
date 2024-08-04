@@ -22,6 +22,7 @@ protocol feed {
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed, MenuControllerDelegate {
     private var sideMenu: SideMenuNavigationController?
 
+    @IBOutlet weak var notiBell: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     
@@ -29,12 +30,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private var personalList:[PostClass] = []
 
     override func viewDidLoad() {
-            super.viewDidLoad()
-            // Do any additional setup after loading the view.
-            tableView.delegate = self
-            tableView.dataSource = self
-            
-            tableView.rowHeight = 200
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.rowHeight = 250
         let menuItems = [
             (text: "Location", symbol: "mappin.and.ellipse"),
             (text: "Friends List", symbol: "person.2"),
@@ -43,25 +44,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             (text: "Settings", symbol: "gear"),
             (text: "Logout", symbol: "arrow.right.square")
         ]
-            let menu = SideMenuTableViewController(with: menuItems)
-            menu.delegate = self
-            sideMenu = SideMenuNavigationController(rootViewController: menu)
+        let menu = SideMenuTableViewController(with: menuItems)
+        menu.delegate = self
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        
+        sideMenu?.leftSide = false
+        SideMenuManager.default.rightMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
             
-            sideMenu?.leftSide = false
-            SideMenuManager.default.rightMenuNavigationController = sideMenu
-            SideMenuManager.default.addPanGestureToPresent(toView: view)
-            
-            let results = retrievePosts()
-//            for currResult in results {
-//                if let username = currResult.value(forKey: "username"), let location = currResult.value(forKey: "location"), let description = currResult.value(forKey: "descript"), let date = currResult.value(forKey: "date"), let users = currResult.value(forKey: "users") {
-//                    feedList.append(PostClass(username: username as! String, location: location as! String, descript: description as! String, date: date as! String, users: users as! [String]))
-//                }
-//            }
+        let results = retrievePosts()
         for currResult in results {
+            print("inside")
             if let username = currResult.value(forKey: "username") as? String {
-                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                print("passed")
+                print(username)
+                
+                if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
+                    print("wtf")
                     feedList = currResult.value(forKey: "feed") as! [PostClass]
                     personalList = currResult.value(forKey: "accepted") as! [PostClass]
+                    break
                 }
             }
         }
@@ -86,6 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func didSelectMenuItem(name: String) {
+            sideMenu?.dismiss(animated: true)
             switch name {
                 case "Location":
                     break
@@ -104,7 +107,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     //if user is signed in it will sign them out then dismiss the current screen
                     try Auth.auth().signOut()
                     // you have to dismiss the opened menu before trying to dismiss current view
-                    sideMenu?.dismiss(animated: true)
+//                    sideMenu?.dismiss(animated: true)
                     self.dismiss(animated: true)
                 } catch {
                     print("Sign out error")
@@ -113,7 +116,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 default:
                     break
             }
-            sideMenu?.dismiss(animated: true)
+            
         }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,42 +157,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
-
-            clearCoreData()
-
-            coreData()
-
+            updateUser()
             
         } else if editingStyle == .insert {
         }
     }
     
     // function to clear core data
-    func clearCoreData() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        var fetchedResults: [NSManagedObject]
-        
-        do {
-            try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
-            if fetchedResults.count > 0 {
-                for result:AnyObject in fetchedResults {
-                    context.delete(result as! NSManagedObject)
-                }
-                saveContext()
-            }
-        } catch {
-            print("Error during deleting data")
-            abort()
-        }
-    }
+//    func clearCoreData() {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+//        var fetchedResults: [NSManagedObject]
+//        
+//        do {
+//            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+//            
+//            if fetchedResults.count > 0 {
+//                for result:AnyObject in fetchedResults {
+//                    context.delete(result as! NSManagedObject)
+//                }
+//                saveContext()
+//            }
+//        } catch {
+//            print("Error during deleting data")
+//            abort()
+//        }
+//    }
     
     // basic function to store all of the current posts we have in our list
-    func coreData() {
-        for currPost in feedList {
-            addPost(post: currPost)
-        }
-    }
+//    func coreData() {
+//        for currPost in feedList {
+//            addPost(post: currPost)
+//        }
+//    }
     
     //saves the current entities
     func saveContext () {
@@ -204,60 +203,67 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func retrievePosts() -> [NSManagedObject] {
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        var fetchedResults: [NSManagedObject]? = nil
         
         do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+            if let fetchedResults = try context.fetch(request) as? [NSManagedObject] {
+                return fetchedResults
+            }
         } catch {
-            print("Error occurred while retrieving data")
+            print("Error occurred while retrieving data: \(error)")
             abort()
         }
-        return (fetchedResults)!
+        return []
     }
     
-    func addPost(post: PostClass) {
-//        let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
-//        postTemp.setValue(post.username, forKey: "username")
-//        postTemp.setValue(post.location, forKey: "location")
-//        postTemp.setValue(post.date, forKey: "date")
-//        postTemp.setValue(post.descript, forKey: "descript")
-//        postTemp.setValue(post.users, forKey: "users")
-        let fetched = retrievePosts()
-        for user in fetched {
-            if let username = user.value(forKey: "username") as? String {
-                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
-                    user.setValue(feedList, forKey: "feed")
-                }
-            }
-        }
-        saveContext()
-    }
+//    func addPost(post: PostClass) {
+////        let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
+////        postTemp.setValue(post.username, forKey: "username")
+////        postTemp.setValue(post.location, forKey: "location")
+////        postTemp.setValue(post.date, forKey: "date")
+////        postTemp.setValue(post.descript, forKey: "descript")
+////        postTemp.setValue(post.users, forKey: "users")
+//        let fetched = retrievePosts()
+//        for user in fetched {
+//            if let username = user.value(forKey: "username") as? String {
+//                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+//                    user.setValue(feedList, forKey: "feed")
+//                }
+//            }
+//        }
+//        saveContext()
+//    }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    
+    func updateUser() {
         let fetched = retrievePosts()
         for user in fetched {
+            print("looking")
             if let username = user.value(forKey: "username") as? String {
-                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                print("part")
+                if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
+                    print("found")
                     user.setValue(feedList, forKey: "feed")
                     user.setValue(personalList, forKey: "accepted")
+                    print("saved")
+                    break
                 }
             }
         }
+        
+        saveContext()
     }
     
     func uploadPost(post: PostClass) {
         feedList.append(post)
-        addPost(post: post)
+        updateUser()
     }
     
     func acceptAction(in cell: PostTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell){
             feedList[indexPath.row].users.append((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!)
             personalList.append(feedList[indexPath.row])
-            clearCoreData()
-            coreData()
+            updateUser()
         }
     }
     
@@ -265,6 +271,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let indexPath = tableView.indexPath(for: cell){
             feedList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            updateUser()
         }
     }
     
@@ -272,17 +279,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         present(sideMenu!, animated: true)
     }
     
-    
-    @IBAction func bellButtonPressed(_ sender: Any) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
-            granted, Error in
-            if granted {
-                print("all set")
-            } else {
-                print(Error!.localizedDescription)
-            }
-        })
+    @IBAction func notiBellPressed(_ sender: Any) {
+//       RIGHT NOW THEWRE IS AN ERORR IDK UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+//            granted, error in
+//            if granted {
+//                self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+//            } else if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        })
+        self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
     }
-    
 }
 

@@ -24,12 +24,6 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 200
-        for currPosts in feedList {
-            if currPosts.users.contains((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!) {
-                print("added personal")
-                personalList.append(currPosts)
-            }
-        }
         
     }
     
