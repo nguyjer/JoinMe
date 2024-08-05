@@ -16,6 +16,10 @@
 		7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */; };
 		9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7752C5D76FB00955082 /* SettingsViewController.swift */; };
 		9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */; };
+		98E41F002C615FC0001E4E19 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */; };
+		98E41F022C61600D001E4E19 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41F012C61600D001E4E19 /* PrivacyViewController.swift */; };
+		98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41F032C616355001E4E19 /* AccountTableViewCell.swift */; };
+		98E41F062C617B17001E4E19 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41F052C617B17001E4E19 /* ChangeProfileViewController.swift */; };
 		D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */; };
 		D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */; };
 		D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */; };
@@ -42,6 +46,10 @@
 		7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		9807F7752C5D76FB00955082 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		98E41F012C61600D001E4E19 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
+		98E41F032C616355001E4E19 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		98E41F052C617B17001E4E19 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		D96BA0862C3E3C3F00B44B7D /* JoinMeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoinMeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,7 @@
 			children = (
 				D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */,
 				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
+				98E41F012C61600D001E4E19 /* PrivacyViewController.swift */,
 				D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */,
 				544083572C5C736F00AA603B /* KathyStoryboard.storyboard */,
 				542BA2E32C5C827900ADC37B /* CalendarCell.swift */,
@@ -101,6 +110,9 @@
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				98E41F052C617B17001E4E19 /* ChangeProfileViewController.swift */,
+				98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */,
+				98E41F032C616355001E4E19 /* AccountTableViewCell.swift */,
 				9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */,
 				9807F7752C5D76FB00955082 /* SettingsViewController.swift */,
 				D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */,
@@ -204,9 +216,13 @@
 				D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */,
 				D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */,
 				D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */,
+				98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */,
+				98E41F022C61600D001E4E19 /* PrivacyViewController.swift in Sources */,
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
 				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
+				98E41F062C617B17001E4E19 /* ChangeProfileViewController.swift in Sources */,
+				98E41F002C615FC0001E4E19 /* AccountViewController.swift in Sources */,
 				9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */,

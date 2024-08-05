@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var logOut: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -41,8 +41,24 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            performSegue(withIdentifier: "accountSegue", sender: self)
+        case 1:
+            //empty for now but enable and disable notfications
+            break
+        case 2:
+            performSegue(withIdentifier: "privacySegue", sender: self)
+        case 3:
+            //empty for now but pulls up email with fake email address for help
+            break
+        default:
+            print("Not supposed to happen")
+            abort()
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     @IBAction func logOutPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
