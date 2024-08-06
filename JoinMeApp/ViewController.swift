@@ -91,6 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             sideMenu?.dismiss(animated: true)
             switch name {
                 case "Location":
+                    performSegue(withIdentifier: "locationSegue", sender: self)
                     break
                 case "Friends List":
                     break

@@ -16,6 +16,9 @@
 		7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */; };
 		9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7752C5D76FB00955082 /* SettingsViewController.swift */; };
 		9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */; };
+		983848C82C62AEBD002CC931 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983848C72C62AEBD002CC931 /* LocationViewController.swift */; };
+		983848CB2C62B298002CC931 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983848CA2C62B298002CC931 /* MapKit.framework */; };
+		983848CD2C62BFFD002CC931 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */; };
 		98E41F002C615FC0001E4E19 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */; };
 		98E41F022C61600D001E4E19 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41F012C61600D001E4E19 /* PrivacyViewController.swift */; };
 		98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E41F032C616355001E4E19 /* AccountTableViewCell.swift */; };
@@ -46,6 +49,9 @@
 		7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		9807F7752C5D76FB00955082 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		983848C72C62AEBD002CC931 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		983848CA2C62B298002CC931 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		98E41F012C61600D001E4E19 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		98E41F032C616355001E4E19 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983848CB2C62B298002CC931 /* MapKit.framework in Frameworks */,
 				D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */,
 				54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */,
 			);
@@ -80,11 +87,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		983848C92C62B298002CC931 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				983848CA2C62B298002CC931 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D96BA07D2C3E3C3F00B44B7D = {
 			isa = PBXGroup;
 			children = (
 				D96BA0882C3E3C3F00B44B7D /* JoinMeApp */,
 				D96BA0872C3E3C3F00B44B7D /* Products */,
+				983848C92C62B298002CC931 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +126,8 @@
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */,
+				983848C72C62AEBD002CC931 /* LocationViewController.swift */,
 				98E41F052C617B17001E4E19 /* ChangeProfileViewController.swift */,
 				98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */,
 				98E41F032C616355001E4E19 /* AccountTableViewCell.swift */,
@@ -211,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983848C82C62AEBD002CC931 /* LocationViewController.swift in Sources */,
 				D96BA0AC2C49967F00B44B7D /* SignUpViewController.swift in Sources */,
 				542BA2E42C5C827900ADC37B /* CalendarCell.swift in Sources */,
 				D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */,
@@ -218,6 +237,7 @@
 				D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */,
 				98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */,
 				98E41F022C61600D001E4E19 /* PrivacyViewController.swift in Sources */,
+				983848CD2C62BFFD002CC931 /* LocationTableViewCell.swift in Sources */,
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
 				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
