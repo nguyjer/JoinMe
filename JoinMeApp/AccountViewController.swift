@@ -17,7 +17,8 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     let profileProperties:[String] = ["Name", "Username", "Homecity", "Bio"]
     let picker = UIImagePickerController()
-    
+    var currentUser: NSObject!
+    var picture1:PictureClass!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -26,15 +27,18 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.masksToBounds = true
         // for know this is fine but we also have to add the option to store the profile picture
-        profilePicture.image = UIImage(named: "GenericAvatar")
+        picture1 = currentUser.value(forKey: "picture") as! PictureClass
+        profilePicture.image = picture1.picture
         picker.delegate = self
-        usernameLabel.text = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
+        usernameLabel.text = currentUser.value(forKey: "username") as? String
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[.editedImage] as! UIImage
         profilePicture.contentMode = .scaleAspectFit
         profilePicture.image = selectedImage
+        picture1.picture = selectedImage
+        currentUser.setValue(picture1, forKey: "picture")
         //save selected image to core data for now skip
         dismiss(animated: true)
     }

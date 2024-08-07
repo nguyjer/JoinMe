@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var logOut: UIButton!
     @IBOutlet weak var tableView: UITableView!
     let settingsOptions:[String] = ["Your Account", "Notifications", "Privacy", "Help"]
-    
+    var currentUser: NSObject!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isScrollEnabled = false
@@ -69,6 +69,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.dismiss(animated: true)
         } catch {
             print("Sign out error")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "accountSegue",
+                  let destination = segue.destination as?
+                    AccountViewController {
+            destination.currentUser = currentUser
         }
     }
 }

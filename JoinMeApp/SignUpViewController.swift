@@ -83,10 +83,12 @@ class SignUpViewController: UIViewController {
         var feed: [PostClass] = []
         var accepted: [PostClass] = []
         let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+        let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
         userTemp.setValue(username, forKey: "username")
         userTemp.setValue(friends, forKey: "friends")
         userTemp.setValue(feed, forKey: "feed")
         userTemp.setValue(accepted, forKey: "accepted")
+        userTemp.setValue(picture, forKey: "picture")
         saveContext()
     }
     

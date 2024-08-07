@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     var notiCheck = false
-    
+    var currentUser: NSObject?
     private var feedList:[PostClass] = []
     private var personalList:[PostClass] = []
 
@@ -59,9 +59,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if let username = currResult.value(forKey: "username") as? String {
                 print("passed")
                 print(username)
-                
                 if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
                     print("wtf")
+                    currentUser = currResult
                     feedList = currResult.value(forKey: "feed") as! [PostClass]
                     personalList = currResult.value(forKey: "accepted") as! [PostClass]
                     break
@@ -85,6 +85,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destination.delegate = self
             destination.feedList = feedList
             destination.personalList = personalList
+        } else if segue.identifier == "settingsSegue",
+                  let destination = segue.destination as?
+                    SettingsViewController {
+            destination.currentUser = currentUser
         }
     }
     

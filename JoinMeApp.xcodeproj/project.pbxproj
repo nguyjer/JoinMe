@@ -15,6 +15,7 @@
 		54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 54EE3FDE2C498E5200ACF984 /* FirebaseAuth */; };
 		7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */; };
 		75B26D072C640757007F8F00 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B26D062C640757007F8F00 /* HelpViewController.swift */; };
+		75B26D092C640966007F8F00 /* PictureClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B26D082C640966007F8F00 /* PictureClass.swift */; };
 		9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7752C5D76FB00955082 /* SettingsViewController.swift */; };
 		9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */; };
 		983848C82C62AEBD002CC931 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983848C72C62AEBD002CC931 /* LocationViewController.swift */; };
@@ -49,6 +50,7 @@
 		54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JoinMeApp.entitlements; sourceTree = "<group>"; };
 		7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		75B26D062C640757007F8F00 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		75B26D082C640966007F8F00 /* PictureClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureClass.swift; sourceTree = "<group>"; };
 		9807F7752C5D76FB00955082 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		983848C72C62AEBD002CC931 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
+				75B26D082C640966007F8F00 /* PictureClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
 				75B26D062C640757007F8F00 /* HelpViewController.swift */,
 				983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */,
@@ -255,6 +258,7 @@
 				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
 				75B26D072C640757007F8F00 /* HelpViewController.swift in Sources */,
 				D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */,
+				75B26D092C640966007F8F00 /* PictureClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
