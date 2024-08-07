@@ -32,8 +32,9 @@ class SignUpViewController: UIViewController {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
+                
                 self.performSegue(withIdentifier: "signUpSegue", sender: self)
-                self.addUser(username: self.userTextField.text!)
+                self.addUser(username: self.userTextField.text!, name:self.nameField.text!, hometown: self.hometownField.text!)
                 self.userTextField.text = nil
                 self.passwordTextField.text = nil
             }
@@ -59,6 +60,10 @@ class SignUpViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         
+        print("name and hometown")
+        print(self.hometownField.text!)
+        print(self.nameField.text!)
+        
         if passwordTextField.text != confirmTextField.text {
             alert.message = "Unsuccesful Sign Up: Password's do not match"
             present(alert, animated: true)
@@ -66,15 +71,7 @@ class SignUpViewController: UIViewController {
         }
         //appends an @ domain to comply with firebase template
         let username = userTextField.text! + ("@joinme.com")
-        Auth.auth().createUser(withEmail: username, password: passwordTextField.text!) {
-            authResult, error in
-            if let error = error as NSError? {
-                alert.message = "\(error.localizedDescription)"
-                self.present(alert, animated: true)
-                
-                
-            }
-        }
+        
         if nameField.text == "" {
             alert.message = "Unsuccesful Sign Up: Name is empty"
             present(alert, animated: true)
@@ -88,20 +85,26 @@ class SignUpViewController: UIViewController {
         }
         
         
+        Auth.auth().createUser(withEmail: username, password: passwordTextField.text!) {
+            authResult, error in
+            if let error = error as NSError? {
+                alert.message = "\(error.localizedDescription)"
+                self.present(alert, animated: true)
+                
+            }
+        }
     }
 
     @IBAction func CancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
-    func addUser(username: String) {
+    func addUser(username: String, name:String, hometown:String) {
         var friends: [String] = []
         var feed: [PostClass] = []
         var accepted: [PostClass] = []
         let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
-        let hometown = hometownField.text
-        let name = nameField.text
         userTemp.setValue(username, forKey: "username")
         userTemp.setValue(friends, forKey: "friends")
         userTemp.setValue(feed, forKey: "feed")
