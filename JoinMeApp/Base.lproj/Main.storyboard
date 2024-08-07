@@ -491,7 +491,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XY-3e-lr5">
-                                <rect key="frame" x="153" y="474" width="87" height="35"/>
+                                <rect key="frame" x="153" y="508" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -501,8 +501,28 @@
                                     <action selector="registerButtonPressed:" destination="6qI-lr-X0G" eventType="touchUpInside" id="wnz-VL-0fF"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-Ma-PdA">
+                                <rect key="frame" x="29" y="405" width="335" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="userId:" destination="aK3-YO-Rgp" eventType="editingDidEnd" id="xCA-eD-Xwc"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw2-06-vFv">
+                                <rect key="frame" x="29" y="447" width="335" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="userId:" destination="aK3-YO-Rgp" eventType="editingDidEnd" id="DxX-R0-Dhx"/>
+                                </connections>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mN-pr-r6S">
-                                <rect key="frame" x="158" y="534" width="77" height="35"/>
+                                <rect key="frame" x="158" y="566" width="77" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
@@ -518,6 +538,8 @@
                     <connections>
                         <outlet property="confirmTextField" destination="NHv-2u-LVV" id="uFn-qh-NkH"/>
                         <outlet property="emailTextField" destination="mfv-5s-EeX" id="Icy-Jo-G1A"/>
+                        <outlet property="hometownField" destination="Cw2-06-vFv" id="kep-lK-DfV"/>
+                        <outlet property="nameField" destination="bJp-Ma-PdA" id="kh0-Zs-l0g"/>
                         <outlet property="numberTextField" destination="Lb5-W1-wXO" id="qbv-85-E5i"/>
                         <outlet property="passwordTextField" destination="ykn-uW-Irz" id="aMh-P7-9gf"/>
                         <outlet property="userTextField" destination="85X-kH-3gi" id="tnP-yK-nvH"/>

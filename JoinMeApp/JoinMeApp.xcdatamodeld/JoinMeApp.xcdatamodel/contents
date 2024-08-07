@@ -11,6 +11,8 @@
         <attribute name="accepted" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[PostClass]"/>
         <attribute name="feed" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[PostClass]"/>
         <attribute name="friends" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
+        <attribute name="hometown" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Transformable" customClassName="PictureClass"/>
         <attribute name="username" optional="YES" attributeType="String"/>
     </entity>

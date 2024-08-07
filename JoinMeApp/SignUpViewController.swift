@@ -17,7 +17,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
-    
+    @IBOutlet weak var hometownField: UITextField!
+    @IBOutlet weak var nameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +47,8 @@ class SignUpViewController: UIViewController {
         confirmTextField.placeholder = "Confirm Password"
         emailTextField.placeholder = "Email"
         numberTextField.placeholder = "Number"
+        nameField.placeholder = "Name"
+        hometownField.placeholder = "HomeTown"
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -72,6 +75,19 @@ class SignUpViewController: UIViewController {
                 
             }
         }
+        if nameField.text == "" {
+            alert.message = "Unsuccesful Sign Up: Name is empty"
+            present(alert, animated: true)
+            return
+        }
+        
+        if hometownField.text == "" {
+            alert.message = "Unsuccesful Sign Up: HomeTown is empty"
+            present(alert, animated: true)
+            return
+        }
+        
+        
     }
 
     @IBAction func CancelButtonPressed(_ sender: Any) {
@@ -84,11 +100,15 @@ class SignUpViewController: UIViewController {
         var accepted: [PostClass] = []
         let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
+        let hometown = hometownField.text
+        let name = nameField.text
         userTemp.setValue(username, forKey: "username")
         userTemp.setValue(friends, forKey: "friends")
         userTemp.setValue(feed, forKey: "feed")
         userTemp.setValue(accepted, forKey: "accepted")
         userTemp.setValue(picture, forKey: "picture")
+        userTemp.setValue(name, forKey: "name")
+        userTemp.setValue(hometown, forKey: "hometown")
         saveContext()
     }
     

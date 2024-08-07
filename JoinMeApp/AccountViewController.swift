@@ -19,6 +19,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     let picker = UIImagePickerController()
     var currentUser: NSObject!
     var picture1:PictureClass!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -31,6 +32,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePicture.image = picture1.picture
         picker.delegate = self
         usernameLabel.text = currentUser.value(forKey: "username") as? String
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
