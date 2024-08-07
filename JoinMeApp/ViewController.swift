@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var notiBell: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
+    var notiCheck = false
     
     private var feedList:[PostClass] = []
     private var personalList:[PostClass] = []
@@ -281,15 +282,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func notiBellPressed(_ sender: Any) {
-//       RIGHT NOW THEWRE IS AN ERORR IDK UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
-//            granted, error in
-//            if granted {
-//                self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
-//            } else if let error = error {
-//                print(error.localizedDescription)
-//            }
-//        })
-        self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+//       RIGHT NOW THEWRE IS AN ERORR IDK 
+        if !notiCheck {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+                granted, error in
+                if granted {
+                    self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+                    self.notiCheck = true
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            })
+        }
+//        if notiBell.image == UIImage(systemName: "bell") {
+//            notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+//        } else {
+//            notiBell.setSymbolImage(UIImage(systemName: "bell")!, contentTransition: .automatic)
+//        }
     }
 }
 

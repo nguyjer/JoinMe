@@ -32,7 +32,7 @@ class ChangeProfileViewController: UIViewController {
         } else {
             //also update the respective core data field
             let controller = delegate as! AccountViewController
-            controller.userUpdated()
+            controller.userUpdated(input: textField.text!, type: titleField)
             self.navigationController?.popViewController(animated: true)
         }
     }

@@ -10,6 +10,7 @@ import FirebaseAuth
 
 class PastEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+
     @IBOutlet weak var tableView: UITableView!
     var delegate: UIViewController!
     var feedList: [PostClass] = []
@@ -22,13 +23,6 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 200
-        
-        for currPosts in feedList {
-            if currPosts.users.contains((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!) {
-                print("added personal")
-                personalList.append(currPosts)
-            }
-        }
         
     }
     

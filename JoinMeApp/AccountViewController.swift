@@ -8,9 +8,11 @@
 import UIKit
 import AVFoundation
 import CoreData
+import FirebaseAuth
 
 class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     let profileProperties:[String] = ["Name", "Username", "Homecity", "Bio"]
@@ -26,6 +28,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         // for know this is fine but we also have to add the option to store the profile picture
         profilePicture.image = UIImage(named: "GenericAvatar")
         picker.delegate = self
+        usernameLabel.text = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -50,7 +53,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.userData.textColor = .lightGray
         cell.pushIcon.textColor = .lightGray
         //create new attributes in Core Data to fill out the label
-        cell.userData.text = "Placeholder"
+        cell.userData.text = ""
         return cell
     }
     
@@ -103,7 +106,14 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func userUpdated() {
+    func userUpdated(input: String, type: String) {
+        switch type {
+            case "Username":
+                usernameLabel.text = input
+                break
+            default:
+                break
+        }
         tableView.reloadData()
     }
 }

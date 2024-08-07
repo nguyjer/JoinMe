@@ -11,9 +11,13 @@ import FirebaseAuth
 class UploadPostViewController: UIViewController {
 
     var delegate: UIViewController!
+    let alert = UIAlertController(
+                title: "One or more fields left blank",
+                message: "Please fill them all out.",
+                preferredStyle: .alert)
     
     @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var decriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventTextField: UITextField!
     
@@ -22,32 +26,27 @@ class UploadPostViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        locationTextField.placeholder = "Location"
-        decriptionTextField.placeholder = "Description"
-        dateTextField.placeholder = "Date"
-        eventTextField.placeholder = "Event Name"
         joinMeButton.layer.cornerRadius = 15
         locationTextField.borderStyle = UITextField.BorderStyle.roundedRect
         dateTextField.borderStyle = UITextField.BorderStyle.roundedRect
         eventTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        decriptionTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        decriptionTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-//        decriptionTextField.layer.borderWidth = 1
-//        eventTextField.layer.borderWidth = 1
-//        locationTextField.layer.borderWidth = 1
-//        dateTextField.layer.borderWidth = 1
-//        locationTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-//        dateTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
-//        eventTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        descriptionTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        descriptionTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
         
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        let usernameNoEmail = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
-        let newPost = PostClass(username: (Auth.auth().currentUser?.email)!, location: locationTextField.text!, descript: decriptionTextField.text!, date: dateTextField.text!, users: [usernameNoEmail!])
-        let otherVC = delegate as! feed
-        otherVC.uploadPost(post: newPost)
-
+        if locationTextField.text != "", descriptionTextField.text != "", dateTextField.text != "", eventTextField.text != "" {
+            let usernameNoEmail = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
+            let newPost = PostClass(username: (Auth.auth().currentUser?.email)!, location: locationTextField.text!, descript: descriptionTextField.text!, date: dateTextField.text!, users: [usernameNoEmail!])
+            let otherVC = delegate as! feed
+            otherVC.uploadPost(post: newPost)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            present(alert, animated: true)
+        }
     }
     
 }
