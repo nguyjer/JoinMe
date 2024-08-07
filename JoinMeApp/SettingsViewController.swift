@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let row = indexPath.row
         cell.iconSettings.image = UIImage(named: "settings\(row)")
         cell.labelSettings.text = settingsOptions[row]
+        cell.delegate = self
         if row == 1 {
             cell.pushIcon.isHidden = true
             cell.notificationsSwitch.isHidden = false
@@ -46,11 +47,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             performSegue(withIdentifier: "accountSegue", sender: self)
         case 1:
             //empty for now but enable and disable notfications
+
             break
         case 2:
+            // privacy segue
             performSegue(withIdentifier: "privacySegue", sender: self)
         case 3:
-            //empty for now but pulls up email with fake email address for help
+            // help segue
+            performSegue(withIdentifier: "helpSegue", sender: self)
             break
         default:
             print("Not supposed to happen")

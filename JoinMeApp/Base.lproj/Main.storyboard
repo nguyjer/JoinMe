@@ -582,9 +582,12 @@
                                                     <nil key="textColor"/>
                                                     <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
-                                                <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QqZ-AP-fOR">
+                                                <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QqZ-AP-fOR">
                                                     <rect key="frame" x="324" y="11" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="notificationToggle:" destination="cxE-8W-gNE" eventType="valueChanged" id="h2u-em-RaA"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -617,11 +620,12 @@
                         <outlet property="tableView" destination="H1V-Vm-07X" id="cec-rQ-cGQ"/>
                         <segue destination="8kb-4v-DZG" kind="show" identifier="accountSegue" id="8A2-7g-Yh1"/>
                         <segue destination="4yI-Vp-Qrm" kind="show" identifier="privacySegue" id="z39-LZ-T45"/>
+                        <segue destination="DC4-cd-1Gt" kind="show" identifier="helpSegue" id="e19-K4-HkQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldd-or-ttF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933.5877862595419" y="-1027.4647887323945"/>
+            <point key="canvasLocation" x="1934" y="-980"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="w0i-Q3-Apk">
@@ -959,7 +963,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGl-PL-dIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2743" y="-930"/>
+            <point key="canvasLocation" x="2741.2213740458014" y="-930.28169014084517"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="Njw-iq-w7p">
+            <objects>
+                <viewController id="DC4-cd-1Gt" customClass="HelpViewController" customModule="JoinMeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6S6-fH-a2Q">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRj-bH-GlU">
+                                <rect key="frame" x="49" y="74" width="294" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Help Page">
+                                        <attributes>
+                                            <color key="NSColor" red="0.44705882352941173" green="0.26666666666666666" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="37" name="PlantagenetCherokee"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feel free to contact us at:" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAf-zF-SGu">
+                                <rect key="frame" x="94" y="172" width="205" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.76349526919999999" green="0.56504064639999996" blue="0.77729215330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="joinmeapphelp@joinme.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3c1-qd-3n2">
+                                <rect key="frame" x="89" y="218" width="215" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="linkColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zPx-ok-5ue"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rCp-19-TdW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jcb-HF-AuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2741.2213740458014" y="-208.45070422535213"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -971,6 +1022,9 @@
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="shift.fill" catalog="system" width="128" height="106"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
