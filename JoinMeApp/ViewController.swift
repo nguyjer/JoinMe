@@ -304,5 +304,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //            notiBell.setSymbolImage(UIImage(systemName: "bell")!, contentTransition: .automatic)
 //        }
     }
+    
+    @IBAction func calendarButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "calendarSegueIdentifier", sender: self)
+        
+    }
+    
 }
 
