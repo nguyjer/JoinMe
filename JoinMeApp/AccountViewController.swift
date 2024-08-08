@@ -19,7 +19,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     let picker = UIImagePickerController()
     var currentUser: NSObject!
     var picture1:PictureClass!
-    var currentData:[String]?
+    var currentData:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -28,14 +28,15 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.masksToBounds = true
         // for know this is fine but we also have to add the option to store the profile picture
-        picture1 = currentUser.value(forKey: "picture") as! PictureClass
+        picture1 = currentUser.value(forKey: "picture") as? PictureClass
         profilePicture.image = picture1.picture
+        
         picker.delegate = self
         usernameLabel.text = currentUser.value(forKey: "username") as? String
-        //currentData!.append(currentUser.value(forKey: "name") as! String)
-        currentData!.append(currentUser.value(forKey: "username") as! String)
-        //currentData!.append(currentUser.value(forKey: "hometown") as! String)
-        currentData!.append("")
+        currentData.append((currentUser.value(forKey: "name") as? String)!)
+        currentData.append(usernameLabel.text!)
+        currentData.append((currentUser.value(forKey: "hometown") as? String)!)
+        currentData.append("")
         
     }
     
@@ -43,10 +44,22 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         let selectedImage = info[.editedImage] as! UIImage
         profilePicture.contentMode = .scaleAspectFit
         profilePicture.image = selectedImage
-        picture1.picture = selectedImage
-        currentUser.setValue(picture1, forKey: "picture")
+        
+        currentUser.setValue(PictureClass(picture: selectedImage), forKey: "picture")
+        saveContext()
         //save selected image to core data for now skip
         dismiss(animated: true)
+    }
+    
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -63,7 +76,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.userData.textColor = .lightGray
         cell.pushIcon.textColor = .lightGray
         //create new attributes in Core Data to fill out the label
-        cell.userData.text = currentData![indexPath.row]
+        cell.userData.text = currentData[indexPath.row]
         return cell
     }
     
@@ -79,6 +92,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let minicontroller = UIAlertController(title: "No Camera Available", message: "Current device has no camera", preferredStyle: .alert)
                 minicontroller.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(minicontroller, animated: true)
+                
     
             } else {
                 switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -118,12 +132,28 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func userUpdated(input: String, type: String) {
         switch type {
-            case "Username":
-                usernameLabel.text = input
-                break
-            default:
-                break
+        case "Username":
+            usernameLabel.text = input
+            currentData[1] = input
+//            currentUser.setValue(input, forKey: "username")
+//            Auth.auth().currentUser?.updateEmail(to: input + "@joinme.com")
+            //cannot change username since firebase
+            break
+        case "Name":
+            currentData[0] = input
+            currentUser.setValue(input, forKey: "name")
+            break
+        case "Homecity":
+            currentData[2] = input
+            currentUser.setValue(input, forKey: "hometown")
+            break
+        case "Bio":
+            currentData[3] = input
+            break
+        default:
+            break
         }
+        saveContext()
         tableView.reloadData()
     }
 }

@@ -52,13 +52,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
-            
+        
         let results = retrievePosts()
         for currResult in results {
             print("inside")
             if let username = currResult.value(forKey: "username") as? String {
                 print("passed")
                 print(username)
+                
                 if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
                     print("wtf")
                     currentUser = currResult
@@ -146,6 +147,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
         
+        if personalList.contains(currPost) {
+            cell.acceptButton.isHidden = true
+            cell.declineButton.isHidden = true
+            cell.statusLabel.text = "Accepted"
+        }
+        
         cell.dateScheduled.text = currPost.date
         cell.descriptionLabel.text = currPost.descript
         return cell
@@ -189,12 +196,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        }
 //    }
     
-    // basic function to store all of the current posts we have in our list
-//    func coreData() {
-//        for currPost in feedList {
-//            addPost(post: currPost)
-//        }
-//    }
     
     //saves the current entities
     func saveContext () {
@@ -221,24 +222,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         return []
     }
-    
-//    func addPost(post: PostClass) {
-////        let postTemp = NSEntityDescription.insertNewObject(forEntityName: "Post", into: context)
-////        postTemp.setValue(post.username, forKey: "username")
-////        postTemp.setValue(post.location, forKey: "location")
-////        postTemp.setValue(post.date, forKey: "date")
-////        postTemp.setValue(post.descript, forKey: "descript")
-////        postTemp.setValue(post.users, forKey: "users")
-//        let fetched = retrievePosts()
-//        for user in fetched {
-//            if let username = user.value(forKey: "username") as? String {
-//                if username == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") {
-//                    user.setValue(feedList, forKey: "feed")
-//                }
-//            }
-//        }
-//        saveContext()
-//    }
     
     
     func updateUser() {
@@ -306,7 +289,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func calendarButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "calendarSegueIdentifier", sender: self)
+        performSegue(withIdentifier: "CalendarSegueIdentifier", sender: self)
         
     }
     
