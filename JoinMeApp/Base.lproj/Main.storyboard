@@ -207,6 +207,9 @@
                                         <barButtonItem key="rightBarButtonItem" image="map.fill" catalog="system" id="2Er-3h-Ggz">
                                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="14" maxY="0.0"/>
                                             <color key="tintColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="mapNavButtonPressed:" destination="wXZ-T4-oyO" id="dev-F5-MSb"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -265,6 +268,7 @@
                         <segue destination="7PE-S5-kaS" kind="show" identifier="pastSegue" id="ef2-Z7-4pw"/>
                         <segue destination="3Qs-9m-amB" kind="show" identifier="settingsSegue" id="3ws-TC-LhZ"/>
                         <segue destination="bDf-ig-hrY" kind="show" identifier="locationSegue" id="Gv1-9K-SAz"/>
+                        <segue destination="8kb-4v-DZG" kind="show" identifier="accSegue" id="aJR-hn-Ycp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yxj-sH-VIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1193,6 +1197,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="8A2-7g-Yh1"/>
         <segue reference="CQv-UF-iP7"/>
     </inferredMetricsTieBreakers>
     <resources>

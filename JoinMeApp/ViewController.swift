@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.rowHeight = 250
         let menuItems = [
-            (text: "Location", symbol: "mappin.and.ellipse"),
+            (text: "Account", symbol: "person"),
             (text: "Friends List", symbol: "person.2"),
             (text: "Upcoming Events", symbol: "calendar.badge.plus"),
             (text: "Past Events", symbol: "clock.arrow.circlepath"),
@@ -53,23 +53,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
         
-        let results = retrievePosts()
-        for currResult in results {
-            print("inside")
-            if let username = currResult.value(forKey: "username") as? String {
-                print("passed")
-                print(username)
-                
-                if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
-                    print("wtf")
-                    currentUser = currResult
-                    feedList = currResult.value(forKey: "feed") as! [PostClass]
-                    personalList = currResult.value(forKey: "accepted") as! [PostClass]
-                    break
-                }
-            }
-        }
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "uploadSegue",
@@ -90,14 +76,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                   let destination = segue.destination as?
                     SettingsViewController {
             destination.currentUser = currentUser
-        }
+        } else if segue.identifier == "accSegue",
+             let destination = segue.destination as?
+               AccountViewController {
+            destination.currentUser = currentUser
+   }
     }
     
     func didSelectMenuItem(name: String) {
             sideMenu?.dismiss(animated: true)
             switch name {
-                case "Location":
-                    performSegue(withIdentifier: "locationSegue", sender: self)
+                case "Account":
+                    performSegue(withIdentifier: "accSegue", sender: self)
                     break
                 case "Friends List":
                     break
@@ -143,23 +133,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if Auth.auth().currentUser?.email == currPost.username {
             cell.usernameInvite.text = "You invited others for \(currPost.location)"
+            cell.hideButtons()
+            
         } else {
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
-        }
-        
-        if personalList.contains(currPost) {
-            cell.acceptButton.isHidden = true
-            cell.declineButton.isHidden = true
-            cell.statusLabel.text = "Accepted"
         }
         
         cell.dateScheduled.text = currPost.date
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! PostTableViewCell
+//        
+//        if cell.hid {
+//            return 200
+//        }
+//        
+//        return 250 // Default height for other cells
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let results = retrievePosts()
+        for currResult in results {
+            print("inside")
+            if let username = currResult.value(forKey: "username") as? String {
+                print("passed")
+                print(username)
+                
+                if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
+                    print("wtf")
+                    currentUser = currResult
+                    feedList = currResult.value(forKey: "feed") as! [PostClass]
+                    personalList = currResult.value(forKey: "accepted") as! [PostClass]
+                    break
+                }
+            }
+        }
         tableView.reloadData()
     }
     
@@ -250,9 +262,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func acceptAction(in cell: PostTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell){
-            feedList[indexPath.row].users.append((Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: ""))!)
             personalList.append(feedList[indexPath.row])
+            feedList.remove(at: indexPath.row)
             updateUser()
+            
+            //this queue allows for a delay in the fade delete
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+                            guard let self = self else { return }
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
@@ -262,6 +280,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             tableView.deleteRows(at: [indexPath], with: .fade)
             updateUser()
         }
+    }
+    
+    @IBAction func mapNavButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "locationSegue", sender: self)
     }
     
     @IBAction func menuButtonPressed(_ sender: Any) {
@@ -281,11 +303,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             })
         }
-//        if notiBell.image == UIImage(systemName: "bell") {
-//            notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
-//        } else {
-//            notiBell.setSymbolImage(UIImage(systemName: "bell")!, contentTransition: .automatic)
-//        }
     }
     
     @IBAction func calendarButtonPressed(_ sender: Any) {
