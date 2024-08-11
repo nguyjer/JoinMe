@@ -21,6 +21,18 @@ class UploadPostViewController: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventTextField: UITextField!
     
+    
+    @IBOutlet weak var eventIdentifierTextField: UITextField!
+    
+    
+    @IBOutlet weak var startDateTextField: UITextField!
+    
+    
+    @IBOutlet weak var endDateTextField: UITextField!
+    
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    
     @IBOutlet weak var joinMeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +52,18 @@ class UploadPostViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
         if locationTextField.text != "", descriptionTextField.text != "", dateTextField.text != "", eventTextField.text != "" {
             let usernameNoEmail = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
-            let newPost = PostClass(username: (Auth.auth().currentUser?.email)!, location: locationTextField.text!, descript: descriptionTextField.text!, date: dateTextField.text!, users: [usernameNoEmail!])
+//            let newPost = PostClass(username: (Auth.auth().currentUser?.email)!, location: locationTextField.text!, descript: descriptionTextField.text!, date: dateTextField.text!, users: [usernameNoEmail!])
+            let newPost = PostClass(
+                username: (Auth.auth().currentUser?.email)!,
+                location: locationTextField.text!,
+                descript: descriptionTextField.text!,
+                date: dateTextField.text!,
+                users: [usernameNoEmail!],
+                eventIdentifier: eventIdentifierTextField.text!,
+                title: eventTextField.text!,
+                startDate: DateFormatter().date(from: startDateTextField.text!) ?? Date(),
+                endDate: DateFormatter().date(from: endDateTextField.text!) ?? Date()
+            )
             let otherVC = delegate as! feed
             otherVC.uploadPost(post: newPost)
             self.navigationController?.popViewController(animated: true)

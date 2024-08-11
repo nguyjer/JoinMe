@@ -387,7 +387,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRy-30-ANE">
-                                <rect key="frame" x="98" y="645" width="197" height="47"/>
+                                <rect key="frame" x="98" y="731" width="197" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.44705882352941173" green="0.26666666666666666" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,6 +423,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Identifier" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ju-TZ-2Zp">
+                                <rect key="frame" x="16" y="510" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rrw-af-Z2n">
+                                <rect key="frame" x="16" y="568" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2tx-N5-0Rg">
+                                <rect key="frame" x="16" y="623" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vF4-q3-aGN">
+                                <rect key="frame" x="16" y="677" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vps-tV-cU5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -431,9 +455,13 @@
                     <connections>
                         <outlet property="dateTextField" destination="Zny-Qj-bMD" id="h2r-l9-Pbj"/>
                         <outlet property="descriptionTextField" destination="lMp-XX-0T7" id="GuU-dR-ViI"/>
+                        <outlet property="endDateTextField" destination="2tx-N5-0Rg" id="TCU-RR-nBD"/>
+                        <outlet property="eventIdentifierTextField" destination="9Ju-TZ-2Zp" id="XZ3-YO-6YE"/>
                         <outlet property="eventTextField" destination="L6Q-NS-sO1" id="zpQ-TH-sio"/>
                         <outlet property="joinMeButton" destination="oRy-30-ANE" id="C3E-Nk-t9j"/>
                         <outlet property="locationTextField" destination="xfS-Ei-bdl" id="zxp-0q-aTP"/>
+                        <outlet property="startDateTextField" destination="Rrw-af-Z2n" id="kgX-dh-mfw"/>
+                        <outlet property="titleTextField" destination="vF4-q3-aGN" id="C6P-Al-9nv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIT-RR-2Wd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
