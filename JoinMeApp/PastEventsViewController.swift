@@ -46,10 +46,12 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
         
-        cell.dateScheduled.text = currPost.date
+        cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

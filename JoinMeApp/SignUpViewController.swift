@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         emailTextField.autocorrectionType = .no
         
@@ -38,6 +38,44 @@ class SignUpViewController: UIViewController {
                 self.userTextField.text = nil
                 self.passwordTextField.text = nil
             }
+        }
+    }
+    
+    func clearPost() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        var fetchedResults: [NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                }
+                saveContext()
+            }
+        } catch {
+            print("Error during deleting data")
+            abort()
+        }
+    }
+    
+    func clearUser() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var fetchedResults: [NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                }
+                saveContext()
+            }
+        } catch {
+            print("Error during deleting data")
+            abort()
         }
     }
     

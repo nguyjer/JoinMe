@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 
+import EventKit
+
 class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
@@ -47,13 +49,23 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
         
-        cell.dateScheduled.text = currPost.date
+        cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let eventStore = EKEventStore()
+            guard let eventToRemove = eventStore.event(withIdentifier: personalList[indexPath.row].eventIdentifier) else {
+                return
+            }
+            
+            do {
+                try eventStore.remove(eventToRemove, span: .thisEvent)
+            } catch {
+                print("error")
+            }
             personalList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             // clear container and then adds updated pizza list to container

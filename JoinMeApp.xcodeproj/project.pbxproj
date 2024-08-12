@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		544083582C5C736F00AA603B /* KathyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544083572C5C736F00AA603B /* KathyStoryboard.storyboard */; };
 		5440835A2C5C760300AA603B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544083592C5C760300AA603B /* CalendarViewController.swift */; };
 		54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE3FD92C49883000ACF984 /* LoginViewController.swift */; };
 		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
@@ -41,7 +40,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		544083572C5C736F00AA603B /* KathyStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KathyStoryboard.storyboard; sourceTree = "<group>"; };
 		544083592C5C760300AA603B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		54EE3FD92C49883000ACF984 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
 				98E41F012C61600D001E4E19 /* PrivacyViewController.swift */,
 				D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */,
-				544083572C5C736F00AA603B /* KathyStoryboard.storyboard */,
 				544083592C5C760300AA603B /* CalendarViewController.swift */,
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
 				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
@@ -219,7 +216,6 @@
 			files = (
 				D96BA0962C3E3C4000B44B7D /* Assets.xcassets in Resources */,
 				54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */,
-				544083582C5C736F00AA603B /* KathyStoryboard.storyboard in Resources */,
 				D96BA0992C3E3C4000B44B7D /* Base in Resources */,
 				D96BA0912C3E3C3F00B44B7D /* Base in Resources */,
 			);

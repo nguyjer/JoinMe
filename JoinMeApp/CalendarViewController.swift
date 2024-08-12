@@ -151,13 +151,15 @@ import EventKit
 
 class CalendarViewController: UIViewController {
 
-    @IBOutlet weak var eventTitle: UITextField!
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var statusLabel: UILabel!
+
+    var eventTitle: String?
     
-    var events: [PostClass] = []
+    //store eventstore in user entity
     let eventStore = EKEventStore()
+    var delegate: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,7 +168,7 @@ class CalendarViewController: UIViewController {
     }
     
     func createEvent() {
-        guard let title = eventTitle.text, !title.isEmpty else {
+        guard let title = eventTitle, !title.isEmpty else {
             postMessage(message: "Title is missing")
             return
         }
@@ -180,18 +182,8 @@ class CalendarViewController: UIViewController {
         do {
             try eventStore.save(event, span: .thisEvent)
             if let eventIdentifier = event.eventIdentifier {
-                let newEvent = PostClass(
-                    username: title,
-                    location: "",
-                    descript: "",
-                    date: DateFormatter.localizedString(from: startDatePicker.date, dateStyle: .short, timeStyle: .short),
-                    users: [],
-                    eventIdentifier: eventIdentifier,
-                    title: title,
-                    startDate: startDatePicker.date,
-                    endDate: endDatePicker.date
-                )
-                events.append(newEvent)
+                let otherVC = delegate as! datePicker
+                otherVC.changeDate(eventID: eventIdentifier, start: event.startDate, end: event.endDate)
                 postMessage(message: "Event added to calendar")
             } else {
                 postMessage(message: "Failed to get event identifier")
@@ -252,30 +244,13 @@ class CalendarViewController: UIViewController {
         
         do {
             try eventStore.remove(eventToRemove, span: .thisEvent)
-            if let index = events.firstIndex(where: { $0.eventIdentifier == eventIdentifier }) {
-                events.remove(at: index)
-            }
             postMessage(message: "Event removed from calendar")
         } catch {
             postMessage(message: "Event not removed due to error: \(error.localizedDescription)")
         }
     }
     
-    @IBAction func removeEventSelected(_ sender: Any) {
-        let alert = UIAlertController(title: "Select Event", message: "Choose the event you want to delete", preferredStyle: .alert)
-        
-        for event in events {
-            let action = UIAlertAction(title: event.title, style: .destructive) { _ in
-                self.deleteEvent(eventIdentifier: event.eventIdentifier)
-            }
-            alert.addAction(action)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
+
     
     func fetchEvents() {
         // Load events from saved data or a file, if needed.

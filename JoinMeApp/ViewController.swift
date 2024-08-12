@@ -80,7 +80,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
              let destination = segue.destination as?
                AccountViewController {
             destination.currentUser = currentUser
-   }
+    }
     }
     
     func didSelectMenuItem(name: String) {
@@ -139,7 +139,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
         
-        cell.dateScheduled.text = currPost.date
+        cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
@@ -189,24 +189,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // function to clear core data
-//    func clearCoreData() {
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-//        var fetchedResults: [NSManagedObject]
-//        
-//        do {
-//            try fetchedResults = context.fetch(request) as! [NSManagedObject]
-//            
-//            if fetchedResults.count > 0 {
-//                for result:AnyObject in fetchedResults {
-//                    context.delete(result as! NSManagedObject)
-//                }
-//                saveContext()
-//            }
-//        } catch {
-//            print("Error during deleting data")
-//            abort()
-//        }
-//    }
+    func clearCoreData() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var fetchedResults: [NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                }
+                saveContext()
+            }
+        } catch {
+            print("Error during deleting data")
+            abort()
+        }
+    }
     
     
     //saves the current entities
