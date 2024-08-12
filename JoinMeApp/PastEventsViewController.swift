@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreData
 
 class PastEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -40,18 +41,41 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let usernameNoEmail = currPost.username.replacingOccurrences(of: "@joinme.com", with: "")
         
-        if Auth.auth().currentUser?.email == currPost.username {
+        if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") == currPost.username {
             cell.usernameInvite.text = "You invited others for \(currPost.location)"
+            
         } else {
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
-        
+        cell.profilePicture.image = getImage(username: currPost.username)
         cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
     
+    func getImage(username: String) -> UIImage {
+        let results = retrievePosts()
+        for user in results {
+            if username == user.value(forKey: "username") as! String {
+                return (user.value(forKey: "picture") as! PictureClass).picture
+            }
+        }
+        return UIImage(named: "GenericAvatar")!
+    }
     
+    func retrievePosts() -> [NSManagedObject] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        
+        do {
+            if let fetchedResults = try context.fetch(request) as? [NSManagedObject] {
+                return fetchedResults
+            }
+        } catch {
+            print("Error occurred while retrieving data: \(error)")
+            abort()
+        }
+        return []
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
