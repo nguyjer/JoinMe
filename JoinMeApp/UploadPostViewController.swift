@@ -93,23 +93,24 @@ class UploadPostViewController: UIViewController, getInfo {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        if locationTextField.text != "", descriptionTextField.text != "", eventTextField.text != "", !friendsInvited.isEmpty{
-            let usernameNoEmail = Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "")
+        // If we have all the validated inputs, then do the rest
+        if validateInputs() {
+            let usernameNoEmail = Auth.auth().currentUser?.email?.replacingOccurrences(of: "@joinme.com", with: "")
             addEventCalendar()
             
-            //have to ADD EVENT TITLE TO POST CLASS AND ENTITY
+            // Create new post
             let newPost = PostClass(
                 username: usernameNoEmail!,
                 location: locationTextField.text!,
                 descript: descriptionTextField.text!,
-                users: friendsInvited,	
+                users: friendsInvited,
                 eventIdentifier: eventIdentifier!,
                 startDate: startDate!,
                 endDate: endDate!
             )
-            
+
+            // Update user feeds
             let fetchedResults = retrieveUsers()
-            
             for result in fetchedResults {
                 if friendsInvited.contains(result.value(forKey: "username") as! String) {
                     var feedList = result.value(forKey: "feed") as! [PostClass]
@@ -118,7 +119,6 @@ class UploadPostViewController: UIViewController, getInfo {
                 }
             }
             
-            
             let otherVC = delegate as! feed
             otherVC.uploadPost(post: newPost)
             
@@ -126,6 +126,35 @@ class UploadPostViewController: UIViewController, getInfo {
         } else {
             present(alert, animated: true)
         }
+    }
+
+    func validateInputs() -> Bool {
+        guard let startDate = startDatePicker?.date, let endDate = endDatePicker?.date else {
+            postMessage(message: "Date selection is incomplete.")
+            return false
+        }
+
+        if locationTextField.text == "" || descriptionTextField.text == "" || eventTextField.text == "" /*|| friendsInvited.isEmpty */{
+            postMessage(message: "All fields must be filled out.")
+            return false
+        }
+
+        if startDate < Date() {
+            postMessage(message: "Start date cannot be in the past.")
+            return false
+        }
+
+        if endDate < startDate {
+            postMessage(message: "End date cannot be before the start date.")
+            return false
+        }
+        return true
+    }
+    
+    func postMessage(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     func retrieveUsers() -> [NSManagedObject] {
@@ -149,6 +178,7 @@ class UploadPostViewController: UIViewController, getInfo {
                 destination.currentUser = currentUser
         }
     }
+    
     
     //store eventstore in user entity
     let eventStore = EKEventStore()
@@ -237,11 +267,6 @@ class UploadPostViewController: UIViewController, getInfo {
     }
     
     
-    func postMessage(message: String) {
-        
-//        present(alert, animated: true)
-    }
-    
     func changeDate(eventID: String, start: Date, end: Date) {
         eventIdentifier = eventID
         startDate = start
@@ -253,3 +278,4 @@ class UploadPostViewController: UIViewController, getInfo {
         
     }
 }
+ 
