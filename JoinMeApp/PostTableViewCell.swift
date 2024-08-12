@@ -19,6 +19,8 @@ class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateScheduled: UILabel!
     
+    @IBOutlet weak var profilePicture: UIImageView!
+    
     var hid: Bool = false
 
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -48,6 +50,8 @@ class PostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
+        profilePicture.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

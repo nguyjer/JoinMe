@@ -182,7 +182,7 @@ class CalendarViewController: UIViewController {
         do {
             try eventStore.save(event, span: .thisEvent)
             if let eventIdentifier = event.eventIdentifier {
-                let otherVC = delegate as! datePicker
+                let otherVC = delegate as! getInfo
                 otherVC.changeDate(eventID: eventIdentifier, start: event.startDate, end: event.endDate)
                 postMessage(message: "Event added to calendar")
             } else {

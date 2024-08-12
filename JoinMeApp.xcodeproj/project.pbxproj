@@ -12,6 +12,10 @@
 		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
 		54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 54EE3FDE2C498E5200ACF984 /* FirebaseAuth */; };
 		7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */; };
+		753426292C6A7458001CD878 /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753426282C6A7458001CD878 /* FriendsListViewController.swift */; };
+		7534262B2C6A7583001CD878 /* FriendsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */; };
+		7534262D2C6A8076001CD878 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534262C2C6A8076001CD878 /* AddFriendViewController.swift */; };
+		7534262F2C6A954C001CD878 /* ExpandedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */; };
 		75B26D072C640757007F8F00 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B26D062C640757007F8F00 /* HelpViewController.swift */; };
 		75B26D092C640966007F8F00 /* PictureClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B26D082C640966007F8F00 /* PictureClass.swift */; };
 		9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7752C5D76FB00955082 /* SettingsViewController.swift */; };
@@ -45,6 +49,10 @@
 		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JoinMeApp.entitlements; sourceTree = "<group>"; };
 		7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		753426282C6A7458001CD878 /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
+		7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewCell.swift; sourceTree = "<group>"; };
+		7534262C2C6A8076001CD878 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedPostViewController.swift; sourceTree = "<group>"; };
 		75B26D062C640757007F8F00 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		75B26D082C640966007F8F00 /* PictureClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureClass.swift; sourceTree = "<group>"; };
 		9807F7752C5D76FB00955082 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +133,10 @@
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				75B26D082C640966007F8F00 /* PictureClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				7534262C2C6A8076001CD878 /* AddFriendViewController.swift */,
+				7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */,
+				7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */,
+				753426282C6A7458001CD878 /* FriendsListViewController.swift */,
 				75B26D062C640757007F8F00 /* HelpViewController.swift */,
 				983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */,
 				983848C72C62AEBD002CC931 /* LocationViewController.swift */,
@@ -240,14 +252,18 @@
 				54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */,
 				D96BA0DB2C4F1EF100B44B7D /* PostClass.swift in Sources */,
 				98E41F062C617B17001E4E19 /* ChangeProfileViewController.swift in Sources */,
+				7534262D2C6A8076001CD878 /* AddFriendViewController.swift in Sources */,
 				98E41F002C615FC0001E4E19 /* AccountViewController.swift in Sources */,
 				9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */,
+				7534262F2C6A954C001CD878 /* ExpandedPostViewController.swift in Sources */,
+				753426292C6A7458001CD878 /* FriendsListViewController.swift in Sources */,
 				5440835A2C5C760300AA603B /* CalendarViewController.swift in Sources */,
 				D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */,
 				7513BFAF2C52D61300F2D947 /* PostTableViewCell.swift in Sources */,
 				D9847CF22C52F9E100D0A0C0 /* UpcomingEventsViewController.swift in Sources */,
+				7534262B2C6A7583001CD878 /* FriendsListTableViewCell.swift in Sources */,
 				75B26D072C640757007F8F00 /* HelpViewController.swift in Sources */,
 				D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */,
 				75B26D092C640966007F8F00 /* PictureClass.swift in Sources */,

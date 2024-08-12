@@ -61,6 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "uploadSegue",
            let destination = segue.destination as? UploadPostViewController {
             destination.delegate = self
+            destination.currentUser = currentUser
         } else if segue.identifier == "upcomingSegue",
                   let destination = segue.destination as? UpcomingEventsViewController {
             destination.delegate = self
@@ -80,7 +81,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
              let destination = segue.destination as?
                AccountViewController {
             destination.currentUser = currentUser
-    }
+        } else if segue.identifier == "friendsListSegue",
+                  let destination = segue.destination as? FriendsListViewController {
+            destination.currentUser = currentUser
+        } else if segue.identifier == "expandedPostSegue",
+                  let destination = segue.destination as?
+                    ExpandedPostViewController {
+            destination.post = feedList[tableView.indexPathForSelectedRow!.row]
+            destination.profilePicture1 = getImage(username: feedList[tableView.indexPathForSelectedRow!.row].username)
+            destination.name = getName(username: feedList[tableView.indexPathForSelectedRow!.row].username)
+        }
     }
     
     func didSelectMenuItem(name: String) {
@@ -90,6 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     performSegue(withIdentifier: "accSegue", sender: self)
                     break
                 case "Friends List":
+                    performSegue(withIdentifier: "friendsListSegue", sender: self)
                     break
                 case "Upcoming Events":
                     performSegue(withIdentifier: "upcomingSegue", sender: self)
@@ -116,6 +127,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }
     
+    func getName(username: String) -> String {
+        let results = retrievePosts()
+        for user in results {
+            if username == user.value(forKey: "username") as! String {
+                return (user.value(forKey: "name") as! String)
+            }
+        }
+        return ""
+    }
+    
+    func getImage(username: String) -> UIImage {
+        let results = retrievePosts()
+        for user in results {
+            if username == user.value(forKey: "username") as! String {
+                return (user.value(forKey: "picture") as! PictureClass).picture
+            }
+        }
+        return UIImage(named: "GenericAvatar")!
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedList.count
     }
@@ -131,28 +162,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let usernameNoEmail = currPost.username.replacingOccurrences(of: "@joinme.com", with: "")
         
-        if Auth.auth().currentUser?.email == currPost.username {
+        if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") == currPost.username {
             cell.usernameInvite.text = "You invited others for \(currPost.location)"
             cell.hideButtons()
             
         } else {
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
-        
+        cell.profilePicture.image = getImage(username: currPost.username)
         cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! PostTableViewCell
-//        
-//        if cell.hid {
-//            return 200
-//        }
-//        
-//        return 250 // Default height for other cells
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -237,26 +258,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func updateUser() {
-        let fetched = retrievePosts()
-        for user in fetched {
-            print("looking")
-            if let username = user.value(forKey: "username") as? String {
-                print("part")
-                if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
-                    print("found")
-                    user.setValue(feedList, forKey: "feed")
-                    user.setValue(personalList, forKey: "accepted")
-                    print("saved")
-                    break
-                }
-            }
-        }
-        
+        currentUser?.setValue(feedList, forKey: "feed")
+        currentUser?.setValue(personalList, forKey: "accepted")
         saveContext()
     }
     
     func uploadPost(post: PostClass) {
         feedList.append(post)
+        personalList.append(post)
         updateUser()
     }
     
