@@ -1262,10 +1262,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68c-Rj-elh">
+                                                    <rect key="frame" x="222" y="53" width="139" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Friend Request"/>
+                                                    <connections>
+                                                        <action selector="sendRequestButtonPressed:" destination="pY1-as-1aX" eventType="touchUpInside" id="EcM-9m-ycN"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="profileImage" destination="eMI-wN-yYj" id="psY-Af-6mM"/>
+                                            <outlet property="sendRequestButton" destination="68c-Rj-elh" id="wGr-Z2-gnP"/>
                                             <outlet property="userPersonalName" destination="djv-hM-umH" id="6Vx-xu-iWl"/>
                                             <outlet property="username" destination="oJz-Qd-LPk" id="zcc-LJ-7y4"/>
                                         </connections>

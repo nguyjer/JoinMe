@@ -26,7 +26,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     var notiCheck = false
-    var currentUser: NSObject?
+//    var currentUser: NSObject?
+    var currentUser: NSManagedObject? // Updated to NSManagedObject
     private var feedList:[PostClass] = []
     private var personalList:[PostClass] = []
 
