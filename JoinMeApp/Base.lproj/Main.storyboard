@@ -42,19 +42,11 @@
                                     <segue destination="6qI-lr-X0G" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="UCe-fg-kDu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd4-Pa-RCJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd4-Pa-RCJ">
                                 <rect key="frame" x="93" y="98" width="207" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Login">
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="63" name="Helvetica"/>
-                                            <font key="NSOriginalFont" size="63" name="NotoSerifMyanmar-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="63"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="shadowColor" red="0.35166169679999998" green="0.2978869791" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="shadowOffset" width="4" height="0.0"/>
@@ -83,11 +75,12 @@
             </objects>
             <point key="canvasLocation" x="-773.28244274809163" y="-2.1126760563380285"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav View Controller-->
         <scene sceneID="C1c-ow-6zE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rbm-XB-c6K" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rbm-XB-c6K" customClass="UINavViewController" customModule="JoinMeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="WWQ-50-LJ1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qf6-Xh-15o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -264,7 +257,7 @@
                         <segue destination="jZ0-dQ-DIO" kind="show" identifier="upcomingSegue" id="XEU-Li-RYr"/>
                         <segue destination="7PE-S5-kaS" kind="show" identifier="pastSegue" id="ef2-Z7-4pw"/>
                         <segue destination="3Qs-9m-amB" kind="show" identifier="settingsSegue" id="3ws-TC-LhZ"/>
-                        <segue destination="bDf-ig-hrY" kind="show" identifier="locationSegue" id="Gv1-9K-SAz"/>
+                        <segue destination="bDf-ig-hrY" kind="presentation" identifier="locationSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Gv1-9K-SAz"/>
                         <segue destination="8kb-4v-DZG" kind="show" identifier="accSegue" id="aJR-hn-Ycp"/>
                         <segue destination="pY1-as-1aX" kind="show" identifier="friendsListSegue" id="YJa-iQ-ZIm"/>
                     </connections>
@@ -347,6 +340,7 @@
                                             <outlet property="profilePicture" destination="N2A-by-0ju" id="jhG-kp-6B6"/>
                                             <outlet property="statusLabel" destination="4oL-6P-d1H" id="VMa-dC-fjO"/>
                                             <outlet property="usernameInvite" destination="vip-er-JKg" id="hfB-dX-xCo"/>
+                                            <segue destination="Jom-U8-jeJ" kind="show" identifier="expandedUpcomingSegue" id="bsm-Jh-YF5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -561,19 +555,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSp-hm-GBC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSp-hm-GBC">
                                 <rect key="frame" x="77" y="77" width="239" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Register">
-                                        <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="63" name="Helvetica"/>
-                                            <font key="NSOriginalFont" size="63" name="NotoSerifMyanmar-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="63"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="shadowColor" red="0.35166169679999998" green="0.2978869791" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="shadowOffset" width="4" height="0.0"/>
@@ -830,6 +816,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qtc-5a-FJM">
+                                <rect key="frame" x="0.0" y="792" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="N7b-Xd-A6N">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" image="person.2.fill" catalog="system" id="LOc-eY-Hgo">
+                                            <inset key="imageInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <color key="tintColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <segue destination="rbm-XB-c6K" kind="presentation" identifier="homeSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Pwp-0v-ha3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oYj-Wr-fIX">
+                                            <rect key="frame" x="134.66666666666666" y="4.6666666666666679" width="123.99999999999997" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="shift.fill" catalog="system">
+                                                <color key="baseForegroundColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <segue destination="thH-wF-0PI" kind="show" id="b9b-hE-Mlo"/>
+                                            </connections>
+                                        </button>
+                                        <barButtonItem key="rightBarButtonItem" image="map.fill" catalog="system" id="lGD-nm-6Le">
+                                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="14" maxY="0.0"/>
+                                            <color key="tintColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="mapNavButtonPressed:" destination="wXZ-T4-oyO" id="8QZ-Fm-LEo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JS5-Jr-tKS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1061,6 +1081,7 @@
                                             <outlet property="profilePicture" destination="D2v-sa-dKt" id="CFJ-GV-SOO"/>
                                             <outlet property="statusLabel" destination="OCT-CR-W9a" id="olW-pq-4Il"/>
                                             <outlet property="usernameInvite" destination="jFP-mS-hrU" id="q1P-lh-grm"/>
+                                            <segue destination="Jom-U8-jeJ" kind="show" identifier="expandedPastSegue" id="bxw-Jp-BFJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1458,8 +1479,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Gv1-9K-SAz"/>
+        <segue reference="DPx-vn-yJL"/>
         <segue reference="aJR-hn-Ycp"/>
-        <segue reference="CQv-UF-iP7"/>
+        <segue reference="V3w-H9-efq"/>
+        <segue reference="Pwp-0v-ha3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="125" height="128"/>
@@ -1468,19 +1492,19 @@
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="shift.fill" catalog="system" width="128" height="106"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

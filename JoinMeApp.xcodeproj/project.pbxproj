@@ -43,6 +43,7 @@
 		D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = D9847CF42C5464D900D0A0C0 /* SideMenu */; };
 		D9847CF72C54655800D0A0C0 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */; };
 		D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */; };
+		D9F0BBE12C6C26A4003A66F9 /* UINavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsViewController.swift; sourceTree = "<group>"; };
 		D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastEventsViewController.swift; sourceTree = "<group>"; };
+		D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				75B26D082C640966007F8F00 /* PictureClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */,
 				54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */,
 				7534262C2C6A8076001CD878 /* AddFriendViewController.swift */,
 				7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */,
@@ -262,6 +265,7 @@
 				7534262D2C6A8076001CD878 /* AddFriendViewController.swift in Sources */,
 				98E41F002C615FC0001E4E19 /* AccountViewController.swift in Sources */,
 				9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */,
+				D9F0BBE12C6C26A4003A66F9 /* UINavViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */,
 				7534262F2C6A954C001CD878 /* ExpandedPostViewController.swift in Sources */,

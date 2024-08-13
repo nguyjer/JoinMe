@@ -62,7 +62,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
                 eventStore.requestFullAccessToEvents { (granted, error) in
                     DispatchQueue.main.async {
                         if granted {
-                            self.createEvent()
+                            
                         } else {
                             self.postMessage(message: "No calendar access")
                         }
@@ -73,7 +73,6 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
                 eventStore.requestAccess(to: .event) { (granted, error) in
                     DispatchQueue.main.async {
                         if granted {
-                            self.createEvent()
                         } else {
                             self.postMessage(message: "No calendar access")
                         }
@@ -169,9 +168,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     }
     
     func postMessage(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+
     }
     
     func retrieveUsers() -> [NSManagedObject] {

@@ -18,6 +18,8 @@ protocol feed {
     func uploadPost(post: PostClass)
     func acceptAction(in cell: PostTableViewCell)
     func declineAction(in cell: PostTableViewCell)
+    func getName(username: String) -> String
+    func getImage(username: String) -> UIImage
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed, MenuControllerDelegate {
@@ -34,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,10 +57,57 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
-        
+        notiBellCheck(request: false)
+
     }
     
+    func notiBellCheck(request: Bool) {
+        UNUserNotificationCenter.current().getNotificationSettings {
+            settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                if request {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+                        granted, error in
+                        if granted {
+                            self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+                            self.notiCheck = true
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    })
+                }
+                break
+            case .denied:
+                self.notiInstruct(onOrOff: "on", request: request)
+                break
+            case .authorized:
+                self.notiInstruct(onOrOff: "off", request: request)
+                break
+            case .provisional:
+                break
+            case .ephemeral:
+                break
+            default:
+                break
+            }
+        }
+    }
     
+    func notiInstruct(onOrOff: String, request: Bool) {
+        DispatchQueue.main.sync {
+            self.notiBell.setSymbolImage(UIImage(systemName: onOrOff != "on" ? "bell.fill" : "bell")!, contentTransition: .automatic)
+            if request {
+                let controller = UIAlertController(
+                    title: "Turn \(onOrOff) Notifications",
+                    message: "To turn \(onOrOff) notications, please go to your Settings application -> JoinMe -> Notification Settings -> Toggle \(onOrOff)",
+                    preferredStyle: .actionSheet)
+                
+                controller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(controller, animated: true)
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "uploadSegue",
@@ -92,6 +142,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             destination.post = feedList[tableView.indexPathForSelectedRow!.row]
             destination.profilePicture1 = getImage(username: feedList[tableView.indexPathForSelectedRow!.row].username)
             destination.name = getName(username: feedList[tableView.indexPathForSelectedRow!.row].username)
+        } else if segue.identifier == "locationSegue",
+                  let destination = segue.destination as? LocationViewController {
+            destination.delegate = self
         }
     }
     
@@ -303,34 +356,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func notiBellPressed(_ sender: Any) {
 //       RIGHT NOW THEWRE IS AN ERORR IDK 
-        UNUserNotificationCenter.current().getNotificationSettings {
-            settings in
-            switch settings.authorizationStatus {
-            case .notDetermined:
-                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
-                    granted, error in
-                    if granted {
-                        self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
-                        self.notiCheck = true
-                    } else if let error = error {
-                        print(error.localizedDescription)
-                    }
-                })
-                break
-            case .denied:
-                self.notiBell.setSymbolImage(UIImage(systemName: "bell")!, contentTransition: .automatic)
-                break
-            case .authorized:
-                self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
-                break
-            case .provisional:
-                break
-            case .ephemeral:
-                break
-            default:
-                break
-            }
-        }
+        notiBellCheck(request: true)
     }
     
 }

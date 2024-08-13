@@ -10,6 +10,7 @@ import MapKit
 
 class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    var delegate: UIViewController?
     var nearbyList:[Post] = []
     @IBOutlet weak var mapType: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -17,12 +18,29 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.layer.cornerRadius = 40 // Adjust the radius as needed
         mapView.clipsToBounds = true
         tableView.delegate = self
         tableView.dataSource = self
+        delegate?.dismiss(animated: false)
+    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+////        if let homeDelegate = delegate {
+////            homeDelegate.dismiss(animated: true)
+////        }
+//        super.viewDidAppear(true)
+//        delegate?.dismiss(animated: false)
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeSegue", 
+            let destination = segue.destination as? UINavViewController{
+            destination.locationDelegate = self
+        }
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

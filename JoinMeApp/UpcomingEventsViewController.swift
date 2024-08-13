@@ -30,7 +30,17 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         tableView.rowHeight = 200
         
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "expandedUpcomingSegue",
+                  let destination = segue.destination as?
+            ExpandedPostViewController, let otherVC = delegate as? feed {
+            destination.post = personalList[tableView.indexPathForSelectedRow!.row]
+            destination.profilePicture1 = otherVC.getImage(username: personalList[tableView.indexPathForSelectedRow!.row].username)
+            destination.name = otherVC.getName(username: personalList[tableView.indexPathForSelectedRow!.row].username)
+        }
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         personalList.count
     }

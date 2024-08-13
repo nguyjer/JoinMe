@@ -8,6 +8,7 @@
 import UIKit
 
 import FirebaseAuth
+import CoreData
 
 class LoginViewController: UIViewController {
     
@@ -26,6 +27,36 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
+            }
+        }
+    }
+    
+    func clearCoreData() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var fetchedResults: [NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                }
+                saveContext()
+            }
+        } catch {
+            print("Error during deleting data")
+            abort()
+        }
+    }
+    
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }

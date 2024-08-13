@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //allows to dismiss keyboard clicking outside
         emailTextField.delegate = self
         numberTextField.delegate = self
         passwordTextField.delegate = self
@@ -28,10 +30,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         confirmTextField.delegate = self
         hometownField.delegate = self
         nameField.delegate = self
-        
-        // Do any additional setup after loading the view.
+    
         emailTextField.autocorrectionType = .no
-        
         numberTextField.autocorrectionType = .no
         passwordTextField.autocorrectionType = .no
         userTextField.autocorrectionType = .no
@@ -41,9 +41,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if user != nil {
                 
                 self.performSegue(withIdentifier: "signUpSegue", sender: self)
+                
+                //adds user to the core data entity "user"
                 self.addUser(username: self.userTextField.text!, name:self.nameField.text!, hometown: self.hometownField.text!)
+                
+                //this should blank out all the text fields allowing for another account to be made later
                 self.userTextField.text = nil
                 self.passwordTextField.text = nil
+                self.confirmTextField.text = nil
+                self.emailTextField.text = nil
+                self.hometownField.text = nil
+                self.numberTextField.text = nil
+                self.nameField.text = nil
             }
         }
     }
@@ -117,10 +126,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        
-        print("name and hometown")
-        print(self.hometownField.text!)
-        print(self.nameField.text!)
         
         if passwordTextField.text != confirmTextField.text {
             alert.message = "Unsuccesful Sign Up: Password's do not match"
