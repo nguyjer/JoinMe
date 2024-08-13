@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54400D342C6BE60300E90DC0 /* AddNewFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */; };
+		54400D362C6BF0DF00E90DC0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 54400D352C6BF0DF00E90DC0 /* FirebaseFirestore */; };
 		5440835A2C5C760300AA603B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544083592C5C760300AA603B /* CalendarViewController.swift */; };
 		54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE3FD92C49883000ACF984 /* LoginViewController.swift */; };
 		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
@@ -44,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendViewController.swift; sourceTree = "<group>"; };
 		544083592C5C760300AA603B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		54EE3FD92C49883000ACF984 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				983848CB2C62B298002CC931 /* MapKit.framework in Frameworks */,
+				54400D362C6BF0DF00E90DC0 /* FirebaseFirestore in Frameworks */,
 				D9847CF52C5464D900D0A0C0 /* SideMenu in Frameworks */,
 				54EE3FDF2C498E5200ACF984 /* FirebaseAuth in Frameworks */,
 			);
@@ -133,6 +137,7 @@
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				75B26D082C640966007F8F00 /* PictureClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */,
 				7534262C2C6A8076001CD878 /* AddFriendViewController.swift */,
 				7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */,
 				7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */,
@@ -179,6 +184,7 @@
 			packageProductDependencies = (
 				54EE3FDE2C498E5200ACF984 /* FirebaseAuth */,
 				D9847CF42C5464D900D0A0C0 /* SideMenu */,
+				54400D352C6BF0DF00E90DC0 /* FirebaseFirestore */,
 			);
 			productName = JoinMeApp;
 			productReference = D96BA0862C3E3C3F00B44B7D /* JoinMeApp.app */;
@@ -246,6 +252,7 @@
 				D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */,
 				D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */,
 				98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */,
+				54400D342C6BE60300E90DC0 /* AddNewFriendViewController.swift in Sources */,
 				98E41F022C61600D001E4E19 /* PrivacyViewController.swift in Sources */,
 				983848CD2C62BFFD002CC931 /* LocationTableViewCell.swift in Sources */,
 				D96BA08A2C3E3C3F00B44B7D /* AppDelegate.swift in Sources */,
@@ -510,6 +517,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		54400D352C6BF0DF00E90DC0 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		54EE3FDE2C498E5200ACF984 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 54EE3FDD2C498E5200ACF984 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

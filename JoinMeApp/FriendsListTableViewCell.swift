@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol FriendsListTableViewCellDelegate: AnyObject {
+    func addFriendButtonTapped(_ cell: FriendsListTableViewCell)
+}
+
 class FriendsListTableViewCell: UITableViewCell {
 
     
@@ -18,9 +22,7 @@ class FriendsListTableViewCell: UITableViewCell {
     @IBOutlet weak var userPersonalName: UILabel!
     @IBOutlet weak var username: UILabel!
     
-    
-    @IBOutlet weak var sendRequestButton: UIButton!
-    // Add this button for sending friend requests
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
