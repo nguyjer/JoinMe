@@ -15,7 +15,7 @@ protocol getInfo {
     func inviteFriend(friend: String)
 }
 
-class UploadPostViewController: UIViewController, getInfo {
+class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
 
     var delegate: UIViewController!
     let alert = UIAlertController(
@@ -38,6 +38,10 @@ class UploadPostViewController: UIViewController, getInfo {
     @IBOutlet weak var joinMeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventTextField.delegate = self
+        descriptionTextField.delegate = self
+        locationTextField.delegate = self
 
         // Do any additional setup after loading the view.
         joinMeButton.layer.cornerRadius = 15
@@ -90,6 +94,19 @@ class UploadPostViewController: UIViewController, getInfo {
             self.postMessage(message: "Unknown authorization status")
         }
         
+    }
+    
+    // Called when 'return' key pressed
+
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func buttonPressed(_ sender: Any) {

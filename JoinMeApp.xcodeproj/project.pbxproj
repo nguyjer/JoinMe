@@ -426,6 +426,7 @@
 				CODE_SIGN_ENTITLEMENTS = JoinMeApp/JoinMeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UU5PTSSQ98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JoinMeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -454,6 +455,7 @@
 				CODE_SIGN_ENTITLEMENTS = JoinMeApp/JoinMeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UU5PTSSQ98;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JoinMeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

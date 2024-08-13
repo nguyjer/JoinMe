@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import CoreData
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,6 +21,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        numberTextField.delegate = self
+        passwordTextField.delegate = self
+        userTextField.delegate = self
+        confirmTextField.delegate = self
+        hometownField.delegate = self
+        nameField.delegate = self
         
         // Do any additional setup after loading the view.
         emailTextField.autocorrectionType = .no
@@ -39,6 +46,19 @@ class SignUpViewController: UIViewController {
                 self.passwordTextField.text = nil
             }
         }
+    }
+    
+    // Called when 'return' key pressed
+
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Called when the user clicks on the view outside of the UITextField
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func clearPost() {

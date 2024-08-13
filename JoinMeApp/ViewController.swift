@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import CoreData
 import SideMenu
+import UserNotifications
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
@@ -302,22 +303,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func notiBellPressed(_ sender: Any) {
 //       RIGHT NOW THEWRE IS AN ERORR IDK 
-        if !notiCheck {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
-                granted, error in
-                if granted {
-                    self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
-                    self.notiCheck = true
-                } else if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
+        UNUserNotificationCenter.current().getNotificationSettings {
+            settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {
+                    granted, error in
+                    if granted {
+                        self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+                        self.notiCheck = true
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                })
+                break
+            case .denied:
+                self.notiBell.setSymbolImage(UIImage(systemName: "bell")!, contentTransition: .automatic)
+                break
+            case .authorized:
+                self.notiBell.setSymbolImage(UIImage(systemName: "bell.fill")!, contentTransition: .automatic)
+                break
+            case .provisional:
+                break
+            case .ephemeral:
+                break
+            default:
+                break
+            }
         }
-    }
-    
-    @IBAction func calendarButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "CalendarSegueIdentifier", sender: self)
-        
     }
     
 }
