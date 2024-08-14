@@ -134,8 +134,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                AccountViewController {
             destination.currentUser = currentUser
         } else if segue.identifier == "friendsListSegue",
-                  let destination = segue.destination as? FriendsListViewController {
-            destination.currentUser = currentUser
+//                  let destination = segue.destination as? FriendsListViewController {
+//            destination.currentUser = currentUser
+            let destination = segue.destination as? FriendsListViewController {
+                    if let user = currentUser, let username = user.value(forKey: "username") as? String {
+                        destination.currentUser = username
+                    }
         } else if segue.identifier == "expandedPostSegue",
                   let destination = segue.destination as?
                     ExpandedPostViewController {
