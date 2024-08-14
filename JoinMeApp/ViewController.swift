@@ -149,6 +149,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else if segue.identifier == "locationSegue",
                   let destination = segue.destination as? LocationViewController {
             destination.delegate = self
+            destination.postList = feedList
         }
     }
     
@@ -222,11 +223,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let usernameNoEmail = currPost.username.replacingOccurrences(of: "@joinme.com", with: "")
         
         if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") == currPost.username {
-            cell.usernameInvite.text = "You invited others for \(currPost.location)"
+            cell.usernameInvite.text = "You invited others for\n \(currPost.location)"
             cell.hideButtons()
             
         } else {
-            cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
+            cell.usernameInvite.text = "\(usernameNoEmail) invited others for\n \(currPost.location)"
         }
         cell.profilePicture.image = getImage(username: currPost.username)
         cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"

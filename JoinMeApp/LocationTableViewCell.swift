@@ -8,7 +8,8 @@
 import UIKit
 
 class LocationTableViewCell: UITableViewCell {
-    @IBOutlet weak var picture: UIImageView!
+   
+    @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
 }
