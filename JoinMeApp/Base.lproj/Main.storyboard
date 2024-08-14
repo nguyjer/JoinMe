@@ -372,12 +372,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xfS-Ei-bdl">
-                                <rect key="frame" x="16" y="182" width="361" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRy-30-ANE">
                                 <rect key="frame" x="98" y="731" width="197" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -444,6 +438,17 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kV-lz-lWv">
+                                <rect key="frame" x="98" y="522" width="197" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.44705882349999998" green="0.2666666667" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Set Location"/>
+                                <connections>
+                                    <segue destination="DBD-vI-KyV" kind="show" identifier="addLocationSegue" id="4lE-Fr-NyK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vps-tV-cU5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -455,7 +460,7 @@
                         <outlet property="eventTextField" destination="L6Q-NS-sO1" id="zpQ-TH-sio"/>
                         <outlet property="inviteButton" destination="5xw-6t-b06" id="cEk-uR-4wA"/>
                         <outlet property="joinMeButton" destination="oRy-30-ANE" id="C3E-Nk-t9j"/>
-                        <outlet property="locationTextField" destination="xfS-Ei-bdl" id="zxp-0q-aTP"/>
+                        <outlet property="locationButton" destination="1kV-lz-lWv" id="MaS-s9-DGz"/>
                         <outlet property="startDatePicker" destination="HeJ-69-csJ" id="LzI-dQ-fDS"/>
                     </connections>
                 </viewController>
@@ -522,6 +527,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NI0-DW-vHN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="945.80152671755718" y="1448.5915492957747"/>
+        </scene>
+        <!--Add Location View Controller-->
+        <scene sceneID="4MB-P6-lWW">
+            <objects>
+                <viewController id="DBD-vI-KyV" customClass="AddLocationViewController" customModule="JoinMeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iQN-l0-8D5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJh-y5-spq">
+                                <rect key="frame" x="0.0" y="44" width="393" height="759"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Au-EP-I9g"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9Au-EP-I9g" firstAttribute="trailing" secondItem="RJh-y5-spq" secondAttribute="trailing" id="Hnp-tg-gcG"/>
+                            <constraint firstItem="9Au-EP-I9g" firstAttribute="bottom" secondItem="RJh-y5-spq" secondAttribute="bottom" id="ZwM-SN-0SF"/>
+                            <constraint firstItem="RJh-y5-spq" firstAttribute="leading" secondItem="9Au-EP-I9g" secondAttribute="leading" id="dDk-CU-HAv"/>
+                            <constraint firstItem="RJh-y5-spq" firstAttribute="top" secondItem="9Au-EP-I9g" secondAttribute="top" id="iWy-6M-8au"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="B6h-Ec-2Iu"/>
+                    <connections>
+                        <outlet property="mapView" destination="RJh-y5-spq" id="Tar-Uo-89a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G6f-tw-EJu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1908" y="1332"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="5xB-Bh-kby">
@@ -1490,19 +1526,19 @@
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
         <image name="shift.fill" catalog="system" width="128" height="106"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

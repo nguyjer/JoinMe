@@ -23,6 +23,7 @@
 		75B26D092C640966007F8F00 /* PictureClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B26D082C640966007F8F00 /* PictureClass.swift */; };
 		9807F7762C5D76FB00955082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7752C5D76FB00955082 /* SettingsViewController.swift */; };
 		9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */; };
+		98149D8D2C6D2BD1006778CF /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98149D8C2C6D2BD1006778CF /* AddLocationViewController.swift */; };
 		983848C82C62AEBD002CC931 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983848C72C62AEBD002CC931 /* LocationViewController.swift */; };
 		983848CB2C62B298002CC931 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983848CA2C62B298002CC931 /* MapKit.framework */; };
 		983848CD2C62BFFD002CC931 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */; };
@@ -63,6 +64,7 @@
 		75B26D082C640966007F8F00 /* PictureClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureClass.swift; sourceTree = "<group>"; };
 		9807F7752C5D76FB00955082 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		98149D8C2C6D2BD1006778CF /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		983848C72C62AEBD002CC931 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		983848CA2C62B298002CC931 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				75B26D082C640966007F8F00 /* PictureClass.swift */,
 				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				98149D8C2C6D2BD1006778CF /* AddLocationViewController.swift */,
 				D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */,
 				54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */,
 				54400D372C6D0C3100E90DC0 /* AuthManager.swift */,
@@ -256,6 +259,7 @@
 				D96BA0AC2C49967F00B44B7D /* SignUpViewController.swift in Sources */,
 				D96BA08E2C3E3C3F00B44B7D /* ViewController.swift in Sources */,
 				D96BA0942C3E3C3F00B44B7D /* JoinMeApp.xcdatamodeld in Sources */,
+				98149D8D2C6D2BD1006778CF /* AddLocationViewController.swift in Sources */,
 				D96BA0DD2C4F225000B44B7D /* UploadPostViewController.swift in Sources */,
 				98E41F042C616355001E4E19 /* AccountTableViewCell.swift in Sources */,
 				54400D342C6BE60300E90DC0 /* AddNewFriendViewController.swift in Sources */,

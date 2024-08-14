@@ -13,6 +13,7 @@ import CoreData
 protocol getInfo {
     func changeDate(eventID: String, start: Date, end: Date)
     func inviteFriend(friend: String)
+    func addedLocation(selected:String)
 }
 
 class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
@@ -23,10 +24,10 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
                 message: "Please fill them all out.",
                 preferredStyle: .alert)
     
+    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var inviteButton: UIButton!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var startDatePicker: UIDatePicker!
-    @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var eventTextField: UITextField!
     var currentUser: NSObject?
@@ -34,6 +35,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     var startDate: Date?
     var endDate: Date?
     var friendsInvited: [String] = []
+    var eventLocation: String = ""
     
     @IBOutlet weak var joinMeButton: UIButton!
     override func viewDidLoad() {
@@ -41,12 +43,10 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
         friendsInvited.append(currentUser?.value(forKey: "username") as! String)
         eventTextField.delegate = self
         descriptionTextField.delegate = self
-        locationTextField.delegate = self
-
         // Do any additional setup after loading the view.
         joinMeButton.layer.cornerRadius = 15
         inviteButton.layer.cornerRadius = 15
-        locationTextField.borderStyle = UITextField.BorderStyle.roundedRect
+        locationButton.layer.cornerRadius = 15
         eventTextField.borderStyle = UITextField.BorderStyle.roundedRect
         descriptionTextField.borderStyle = UITextField.BorderStyle.roundedRect
         descriptionTextField.layer.borderColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 0)
@@ -110,6 +110,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     
     @IBAction func buttonPressed(_ sender: Any) {
         // If we have all the validated inputs, then do the rest
+        
         if validateInputs() {
             let usernameNoEmail = Auth.auth().currentUser?.email?.replacingOccurrences(of: "@joinme.com", with: "")
             addEventCalendar()
@@ -117,7 +118,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
             // Create new post
             let newPost = PostClass(
                 username: usernameNoEmail!,
-                location: locationTextField.text!,
+                location: eventLocation,
                 descript: descriptionTextField.text!,
                 users: friendsInvited,
                 eventIdentifier: eventIdentifier!,
@@ -150,7 +151,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
             return false
         }
 
-        if locationTextField.text == "" || descriptionTextField.text == "" || eventTextField.text == "" /*|| friendsInvited.isEmpty */{
+        if eventLocation == "" || descriptionTextField.text == "" || eventTextField.text == "" /*|| friendsInvited.isEmpty */{
             postMessage(message: "All fields must be filled out.")
             return false
         }
@@ -190,6 +191,11 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
             let destination = segue.destination as? AddFriendViewController {
                 destination.delegate = self
                 destination.currentUser = currentUser
+        }
+        
+        if segue.identifier == "addLocationSegue", 
+            let destination = segue.destination as? AddLocationViewController {
+                destination.delegate = self
         }
     }
     
@@ -292,6 +298,10 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
             return
         }
         friendsInvited.append(friend)
+    }
+    
+    func addedLocation(selected: String) {
+        eventLocation = selected
     }
 }
  
