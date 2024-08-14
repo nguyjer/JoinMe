@@ -47,6 +47,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         currentUser.setValue(PictureClass(picture: selectedImage), forKey: "picture")
         saveContext()
+        
         //save selected image to core data for now skip
         dismiss(animated: true)
     }

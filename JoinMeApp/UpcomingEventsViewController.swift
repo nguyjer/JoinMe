@@ -13,7 +13,6 @@ import CoreData
 
 class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var tableView: UITableView!
     var delegate: UIViewController!
     var feedList: [PostClass] = []
@@ -37,7 +36,7 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
             ExpandedPostViewController, let otherVC = delegate as? feed {
             destination.post = personalList[tableView.indexPathForSelectedRow!.row]
             destination.profilePicture1 = otherVC.getImage(username: personalList[tableView.indexPathForSelectedRow!.row].username)
-            destination.name = otherVC.getName(username: personalList[tableView.indexPathForSelectedRow!.row].username)
+            destination.realName = otherVC.getName(username: personalList[tableView.indexPathForSelectedRow!.row].username)
         }
     }
 
@@ -69,6 +68,13 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            for post in 0...feedList.count {
+                if feedList[post].eventIdentifier == personalList[indexPath.row].eventIdentifier {
+                    feedList.remove(at: post)
+                    break
+                }
+            }
+            
             let eventStore = EKEventStore()
             guard let eventToRemove = eventStore.event(withIdentifier: personalList[indexPath.row].eventIdentifier) else {
                 return
@@ -81,19 +87,41 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
             }
             
             for user in 0...personalList[indexPath.row].users.count {
-                if personalList[indexPath.row].users[user] == Auth.auth().currentUser!.email!.replacingOccurrences(of: "@joinme.com", with: "") {
+                if personalList[indexPath.row].users[user].lowercased() == Auth.auth().currentUser!.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
                     personalList[indexPath.row].users.remove(at: user)
+                    personalList.remove(at: indexPath.row)
+                    let fetchedResults = retrieveUsers()
+                    for result in fetchedResults {
+                        if (result.value(forKey: "username") as! String).lowercased() == Auth.auth().currentUser!.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
+                            result.setValue(personalList, forKey: "accepted")
+                            result.setValue(feedList, forKey: "feed")
+                            saveContext()
+                            break
+                        }
+                    }
+                    break
                 }
             }
-            print("delete")
-            personalList.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
-            // clear container and then adds updated pizza list to container
+        }
+    }
+    
+    
+    
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
     
     func getImage(username: String) -> UIImage {
-        let results = retrievePosts()
+        let results = retrieveUsers()
         for user in results {
             if username == user.value(forKey: "username") as! String {
                 return (user.value(forKey: "picture") as! PictureClass).picture
@@ -102,7 +130,7 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         return UIImage(named: "GenericAvatar")!
     }
     
-    func retrievePosts() -> [NSManagedObject] {
+    func retrieveUsers() -> [NSManagedObject] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         
         do {

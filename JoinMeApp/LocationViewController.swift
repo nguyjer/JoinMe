@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
+    var currentUser: NSManagedObject?
     var delegate: UIViewController?
     @IBOutlet weak var mapType: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -48,6 +49,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         if segue.identifier == "homeSegue",
             let destination = segue.destination as? UINavViewController{
             destination.locationDelegate = self
+        } else if segue.identifier == "locationToUploadSegue",
+                  let destination = segue.destination as? UploadPostViewController{
+            destination.delegate = delegate
+            destination.currentUser = currentUser
         }
     }
     

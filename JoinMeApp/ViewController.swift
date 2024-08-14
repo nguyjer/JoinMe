@@ -20,6 +20,7 @@ protocol feed {
     func declineAction(in cell: PostTableViewCell)
     func getName(username: String) -> String
     func getImage(username: String) -> UIImage
+    func reloadTable()
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, feed, MenuControllerDelegate {
@@ -29,7 +30,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
     var notiCheck = false
-//    var currentUser: NSObject?
     var currentUser: NSManagedObject? // Updated to NSManagedObject
     private var feedList:[PostClass] = []
     private var personalList:[PostClass] = []
@@ -50,17 +50,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             (text: "Settings", symbol: "gear"),
             (text: "Logout", symbol: "arrow.right.square")
         ]
+        
+        //imported and downloaded side menu package to make a simple side menu pop up from the home screen
         let menu = SideMenuTableViewController(with: menuItems)
         menu.delegate = self
         sideMenu = SideMenuNavigationController(rootViewController: menu)
-        
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
         SideMenuManager.default.addPanGestureToPresent(toView: view)
+        
         notiBellCheck(request: false)
-
     }
     
+    //helper function to check on the status of user notifications
     func notiBellCheck(request: Bool) {
         UNUserNotificationCenter.current().getNotificationSettings {
             settings in
@@ -94,6 +96,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    //helper function to produce notification instructions
     func notiInstruct(onOrOff: String, request: Bool) {
         DispatchQueue.main.sync {
             self.notiBell.setSymbolImage(UIImage(systemName: onOrOff != "on" ? "bell.fill" : "bell")!, contentTransition: .automatic)
@@ -145,11 +148,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     ExpandedPostViewController {
             destination.post = feedList[tableView.indexPathForSelectedRow!.row]
             destination.profilePicture1 = getImage(username: feedList[tableView.indexPathForSelectedRow!.row].username)
-            destination.name = getName(username: feedList[tableView.indexPathForSelectedRow!.row].username)
+            destination.realName = getName(username: feedList[tableView.indexPathForSelectedRow!.row].username)
         } else if segue.identifier == "locationSegue",
                   let destination = segue.destination as? LocationViewController {
             destination.delegate = self
             destination.postList = feedList
+            destination.currentUser = currentUser
         }
     }
     
@@ -174,8 +178,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 do {
                     //if user is signed in it will sign them out then dismiss the current screen
                     try Auth.auth().signOut()
-                    // you have to dismiss the opened menu before trying to dismiss current view
-//                    sideMenu?.dismiss(animated: true)
                     self.dismiss(animated: true)
                 } catch {
                     print("Sign out error")
@@ -187,20 +189,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }
     
+    //helper function to parse and retrieve name of a specific user
     func getName(username: String) -> String {
-        let results = retrievePosts()
+        let results = retrieveUsers()
         for user in results {
-            if username == user.value(forKey: "username") as! String {
+            if username.lowercased() == (user.value(forKey: "username") as! String).lowercased() {
                 return (user.value(forKey: "name") as! String)
             }
         }
-        return ""
+        return "John Doe"
     }
     
+    //helper function to parse and retrieve profile picture of a specific user
     func getImage(username: String) -> UIImage {
-        let results = retrievePosts()
+        let results = retrieveUsers()
         for user in results {
-            if username == user.value(forKey: "username") as! String {
+            if username.lowercased() == (user.value(forKey: "username") as! String).lowercased() {
                 return (user.value(forKey: "picture") as! PictureClass).picture
             }
         }
@@ -222,12 +226,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let usernameNoEmail = currPost.username.replacingOccurrences(of: "@joinme.com", with: "")
         
+        //depending on the poster the post table cell will have a different look
         if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") == currPost.username {
-            cell.usernameInvite.text = "You invited others for\n \(currPost.location)"
+            cell.usernameInvite.text = "You invited others for \(currPost.eventTitle) at \(currPost.location)"
             cell.hideButtons()
             
         } else {
-            cell.usernameInvite.text = "\(usernameNoEmail) invited others for\n \(currPost.location)"
+            cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.eventTitle) at \(currPost.location)"
         }
         cell.profilePicture.image = getImage(username: currPost.username)
         cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
@@ -237,15 +242,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let results = retrievePosts()
+        let results = retrieveUsers()
         for currResult in results {
-            print("inside")
+            //checks to find the current user entity with the current use logged in with firebase Auth
             if let username = currResult.value(forKey: "username") as? String {
-                print("passed")
-                print(username)
-                
                 if username.lowercased() == Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() {
-                    print("wtf")
+                    
                     currentUser = currResult
                     feedList = currResult.value(forKey: "feed") as! [PostClass]
                     personalList = currResult.value(forKey: "accepted") as! [PostClass]
@@ -258,14 +260,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("\(indexPath.row)")
+            
             feedList.remove(at: indexPath.row)
-
             tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
+            
             updateUser()
             
-        } else if editingStyle == .insert {
         }
     }
     
@@ -302,9 +302,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func retrievePosts() -> [NSManagedObject] {
+    //retrieves all users
+    func retrieveUsers() -> [NSManagedObject] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        
         do {
             if let fetchedResults = try context.fetch(request) as? [NSManagedObject] {
                 return fetchedResults
@@ -316,13 +316,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return []
     }
     
-    
+    //used to keep core data up to data with changes in the feeds for home upcoming and past VC
     func updateUser() {
         currentUser?.setValue(feedList, forKey: "feed")
         currentUser?.setValue(personalList, forKey: "accepted")
         saveContext()
     }
     
+    //functions below are bottom and top nav bar press observers
+    @IBAction func mapNavButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "locationSegue", sender: self)
+    }
+    
+    @IBAction func menuButtonPressed(_ sender: Any) {
+        present(sideMenu!, animated: true)
+    }
+    
+    @IBAction func notiBellPressed(_ sender: Any) {
+        notiBellCheck(request: true)
+    }
+    
+    //all functions below function as delegates
     func uploadPost(post: PostClass) {
         feedList.append(post)
         personalList.append(post)
@@ -351,18 +365,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    @IBAction func mapNavButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "locationSegue", sender: self)
+    func reloadTable() {
+        tableView.reloadData()
     }
-    
-    @IBAction func menuButtonPressed(_ sender: Any) {
-        present(sideMenu!, animated: true)
-    }
-    
-    @IBAction func notiBellPressed(_ sender: Any) {
-//       RIGHT NOW THEWRE IS AN ERORR IDK 
-        notiBellCheck(request: true)
-    }
-    
 }
 

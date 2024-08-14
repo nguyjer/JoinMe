@@ -11,7 +11,7 @@ class ExpandedPostViewController: UIViewController {
 
     var post: PostClass!
     var profilePicture1: UIImage?
-    var name: String?
+    var realName: String?
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -29,12 +29,14 @@ class ExpandedPostViewController: UIViewController {
         var usersString = "Users Joining: \(post.users)"
         // Do any additional setup after loading the view.
         profilePicture.image = profilePicture1
-        nameLabel.text = name
+        nameLabel.text = realName
         usernameLabel.text = post.username
-        eventNameLabel.text = "NEED TO ADD EVENT NAME LATER"
+        eventNameLabel.text = "\(post.eventTitle)"
         locationLabel.text = "Location: \(post.location)"
         dateStartLabel.text = "Start Date: \(post.startDate)"
         dateEndLabel.text = "End Date: \(post.endDate)"
+        profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
+        profilePicture.layer.masksToBounds = true
         usersString = usersString.replacingOccurrences(of: "[", with: "")
         usersString = usersString.replacingOccurrences(of: "]", with: "")
         usersJoiningLabel.text = usersString.replacingOccurrences(of: "\"", with: "")

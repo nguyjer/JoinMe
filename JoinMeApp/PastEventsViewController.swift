@@ -11,7 +11,6 @@ import CoreData
 
 class PastEventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-
     @IBOutlet weak var tableView: UITableView!
     var delegate: UIViewController!
     var feedList: [PostClass] = []
@@ -33,7 +32,7 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
             ExpandedPostViewController, let otherVC = delegate as? feed {
             destination.post = personalList[tableView.indexPathForSelectedRow!.row]
             destination.profilePicture1 = otherVC.getImage(username: personalList[tableView.indexPathForSelectedRow!.row].username)
-            destination.name = otherVC.getName(username: personalList[tableView.indexPathForSelectedRow!.row].username)
+            destination.realName = otherVC.getName(username: personalList[tableView.indexPathForSelectedRow!.row].username)
         }
     }
     
@@ -44,6 +43,8 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pastCell", for: indexPath) as! PostTableViewCell
         cell.delegate = self
+        
+        let tempList = personalList.reversed()
         
         let row = indexPath.row
         

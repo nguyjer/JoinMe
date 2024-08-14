@@ -30,7 +30,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         friendsList.append(fetchedResults[0])
         for friend in userFriends {
             for result in fetchedResults {
-                if friend == result.value(forKey: "username") as! String {
+                if friend.lowercased() == (result.value(forKey: "username") as! String).lowercased() {
                     friendsList.append(result)
                 }
             }

@@ -67,6 +67,11 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                     print("Tapped location address: \(address)")
                     let otherVC = self.delegate as! getInfo
                     otherVC.addedLocation(selected: self.selectedAddress!)
+                    
+                    //adds a two second delay for dismissing after pinning event location
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                self.dismiss(animated: true, completion: nil)
+                            }
                 }
             }
         }

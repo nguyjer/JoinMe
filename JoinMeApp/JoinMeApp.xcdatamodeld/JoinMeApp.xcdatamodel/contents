@@ -11,6 +11,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="accepted" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[PostClass]"/>
+        <attribute name="eventTitle" optional="YES" attributeType="String"/>
         <attribute name="feed" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[PostClass]"/>
         <attribute name="friends" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
         <attribute name="hometown" optional="YES" attributeType="String"/>

@@ -52,6 +52,7 @@ class PostTableViewCell: UITableViewCell {
         // Initialization code
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.masksToBounds = true
+        usernameInvite.numberOfLines = 4
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

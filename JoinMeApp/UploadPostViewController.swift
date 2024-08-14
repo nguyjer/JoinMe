@@ -30,7 +30,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var eventTextField: UITextField!
-    var currentUser: NSObject?
+    var currentUser: NSManagedObject?
     var eventIdentifier: String?
     var startDate: Date?
     var endDate: Date?
@@ -123,7 +123,8 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
                 users: friendsInvited,
                 eventIdentifier: eventIdentifier!,
                 startDate: startDate!,
-                endDate: endDate!
+                endDate: endDate!,
+                eventTitle: eventTextField.text!
             )
 
             // Update user feeds
@@ -138,8 +139,10 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
             
             let otherVC = delegate as! feed
             otherVC.uploadPost(post: newPost)
+            otherVC.reloadTable()
+
+            dismiss(animated: true, completion: nil)
             
-            self.navigationController?.popViewController(animated: true)
         } else {
             present(alert, animated: true)
         }

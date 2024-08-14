@@ -8,8 +8,9 @@ public class PostClass: NSObject, NSSecureCoding {
     let eventIdentifier: String
     let startDate: Date
     let endDate: Date
+    let eventTitle: String
     
-    init(username: String, location: String, descript: String, users: [String], eventIdentifier: String, startDate: Date, endDate: Date) {
+    init(username: String, location: String, descript: String, users: [String], eventIdentifier: String, startDate: Date, endDate: Date, eventTitle: String) {
         self.username = username
         self.location = location
         self.descript = descript
@@ -17,6 +18,7 @@ public class PostClass: NSObject, NSSecureCoding {
         self.eventIdentifier = eventIdentifier
         self.startDate = startDate
         self.endDate = endDate
+        self.eventTitle = eventTitle
     }
     
     public static var supportsSecureCoding: Bool {
@@ -31,6 +33,7 @@ public class PostClass: NSObject, NSSecureCoding {
         coder.encode(eventIdentifier, forKey: "eventIdentifier")
         coder.encode(startDate, forKey: "startDate")
         coder.encode(endDate, forKey: "endDate")
+        coder.encode(eventTitle, forKey: "eventTitle")
     }
     
     public required init?(coder: NSCoder) {
@@ -41,5 +44,6 @@ public class PostClass: NSObject, NSSecureCoding {
         eventIdentifier = coder.decodeObject(forKey: "eventIdentifier") as! String
         startDate = coder.decodeObject(forKey: "startDate") as! Date
         endDate = coder.decodeObject(forKey: "endDate") as! Date
+        eventTitle = coder.decodeObject(forKey: "eventTitle") as! String
     }
 }
