@@ -85,7 +85,7 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
                     personalList[indexPath.row].users.remove(at: user)
                 }
             }
-            remove(Auth.auth().currentUser!.email!.replacingOccurrences(of: "@joinme.com", with: ""))
+            print("delete")
             personalList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             // clear container and then adds updated pizza list to container

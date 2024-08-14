@@ -38,7 +38,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     @IBOutlet weak var joinMeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        friendsInvited.append(currentUser?.value(forKey: "username") as! String)
         eventTextField.delegate = self
         descriptionTextField.delegate = self
         locationTextField.delegate = self
@@ -288,8 +288,10 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     }
     
     func inviteFriend(friend: String) {
+        if friendsInvited.contains(friend) {
+            return
+        }
         friendsInvited.append(friend)
-        
     }
 }
  

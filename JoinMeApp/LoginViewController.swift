@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        clearCoreData()
         emailField.autocorrectionType = .no
         passwordField.autocorrectionType = .no
         Auth.auth().addStateDidChangeListener() {
@@ -32,8 +33,24 @@ class LoginViewController: UIViewController {
     }
     
     func clearCoreData() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        var request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         var fetchedResults: [NSManagedObject]
+        
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                }
+                saveContext()
+            }
+        } catch {
+            print("Error during deleting data")
+            abort()
+        }
+        
+        request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         
         do {
             try fetchedResults = context.fetch(request) as! [NSManagedObject]
