@@ -27,7 +27,7 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         let fetchedResults = retrieveUsers()
         print("retrieved")
         let userFriends = currentUser?.value(forKey: "friends") as! [String]
-        friendsList.append(fetchedResults[0])
+        friendsList.append(fetchedResults[1])
         for friend in userFriends {
             for result in fetchedResults {
                 if friend == result.value(forKey: "username") as! String {
