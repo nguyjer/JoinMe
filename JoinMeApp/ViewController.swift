@@ -235,7 +235,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.eventTitle) at \(currPost.location)"
         }
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "M/dd/yyyy h:mm a"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         let formattedStart = formatter.string(from: currPost.startDate)
         let formattedEnd = formatter.string(from: currPost.endDate)
         
@@ -249,11 +250,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if editingStyle == .delete {
             // find post in personalList that corresponds to the selected row in feedList
             let postToDelete = feedList[indexPath.row]
-                
-            if let indexInPersonalList = personalList.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier }) {
-                // remove from personalList
-                personalList.remove(at: indexInPersonalList)
+            if postToDelete.username == currentUser?.value(forKey: "username") as! String {
+                if let indexInPersonalList = personalList.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier }) {
+                    // remove from personalList
                     
+                    personalList.remove(at: indexInPersonalList)
+                }
+                
+                let fetchedResults = retrieveUsers()
+                for user in feedList[indexPath.row].users {
+                    for result in fetchedResults {
+                        if result.value(forKey: "username") as! String == user {
+                            var userFeed = result.value(forKey: "feed") as! [PostClass]
+                            if let userFeedIndex = userFeed.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier}) {
+                                userFeed.remove(at: userFeedIndex)
+                                result.setValue(userFeed, forKey: "feed")
+                            }
+                            var acceptedFeed = result.value(forKey: "accepted") as! [PostClass]
+                            if let acceptedIndex = acceptedFeed.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier}) {
+                                acceptedFeed.remove(at: acceptedIndex)
+                                result.setValue(acceptedFeed, forKey: "accepted")
+                            }
+                        }
+                    }
+                }
+                
                 // remove from calendar
                 let eventStore = EKEventStore()
                 if let eventToRemove = eventStore.event(withIdentifier: postToDelete.eventIdentifier) {
@@ -271,6 +292,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if feedList[indexPath.row].username == currentUser?.value(forKey: "username") as! String {
+            return 200
+        }
+        return 250
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let currDate = Date()

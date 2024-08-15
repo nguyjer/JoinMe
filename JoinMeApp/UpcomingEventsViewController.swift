@@ -56,7 +56,8 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "M/dd/yyyy h:mm a"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         let formattedStart = formatter.string(from: currPost.startDate)
         let formattedEnd = formatter.string(from: currPost.endDate)
         
@@ -73,6 +74,10 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
                 
             if let indexInPersonalList = personalList.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier }) {
                 // remove from personalList
+                if let indexInUserList = personalList[indexInPersonalList].users.firstIndex(where: { $0.lowercased() == Auth.auth().currentUser!.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() }) {
+                        // Remove the user from the users array
+                        personalList[indexInPersonalList].users.remove(at: indexInUserList)
+                }
                 personalList.remove(at: indexInPersonalList)
                     
                 // remove from feedList
@@ -106,7 +111,15 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "expandedUpcomingSegue",
+                  let destination = segue.destination as?
+            ExpandedPostViewController, let otherVC = delegate as? feed {
+            destination.post = upcomingList[tableView.indexPathForSelectedRow!.row]
+            destination.profilePicture1 = otherVC.getImage(username: upcomingList[tableView.indexPathForSelectedRow!.row].username)
+            destination.realName = otherVC.getName(username: upcomingList[tableView.indexPathForSelectedRow!.row].username)
+        }
+    }
     
     func saveContext () {
         if context.hasChanges {

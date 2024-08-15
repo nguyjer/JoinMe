@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
-                self.checkUserExist(username: (user?.email?.replacingOccurrences(of: "@joinme.com", with: ""))!)
+                self.checkUserExist(username: (Auth.auth().currentUser?.email?.replacingOccurrences(of: "@joinme.com", with: ""))!)
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         let accepted: [PostClass] = []
         let fetchedResults = retrieveUsers()
         for result in fetchedResults {
-            if username == result.value(forKey: "username") as! String {
+            if username.lowercased() == (result.value(forKey: "username") as! String).lowercased() {
                 return
             }
         }
@@ -52,6 +52,7 @@ class LoginViewController: UIViewController {
         userTemp.setValue(picture, forKey: "picture")
         userTemp.setValue("John Doe", forKey: "name")
         userTemp.setValue("Austin", forKey: "hometown")
+        userTemp.setValue("I live in Austin and go to UT", forKey: "bio")
         saveContext()
     }
     

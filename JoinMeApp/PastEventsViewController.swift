@@ -64,7 +64,8 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "M/dd/yyyy h:mm a"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         let formattedStart = formatter.string(from: currPost.startDate)
         let formattedEnd = formatter.string(from: currPost.endDate)
         

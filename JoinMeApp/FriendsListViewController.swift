@@ -150,14 +150,12 @@ class FriendsListViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    @IBAction func discoverButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "addFriendSegue", sender: self)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addFriendSegue" {
             let destinationVC = segue.destination as! AddNewFriendViewController
             destinationVC.currentUser = currentUser
+        } else if segue.identifier == "expandFriendSegue", let destination = segue.destination as? ExpandedFriendsViewController {
+            destination.currentFriend = friendsList[tableView.indexPathForSelectedRow!.row]
         }
     }
 }

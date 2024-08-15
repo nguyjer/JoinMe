@@ -56,6 +56,9 @@ class PostTableViewCell: UITableViewCell {
         profilePicture.layer.masksToBounds = true
         usernameInvite.numberOfLines = 4
         dateScheduled.numberOfLines = 4
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .left
+        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

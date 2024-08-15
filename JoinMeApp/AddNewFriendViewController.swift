@@ -25,9 +25,9 @@ class AddNewFriendViewController: UIViewController {
     func extractUsername(from email: String) -> String {
         if let atIndex = email.range(of: "@joinme.com")?.lowerBound {
             let username = String(email[..<atIndex])
-            return username.lowercased()
+            return username
         }
-        return email.lowercased() // Fallback in case the domain is not found
+        return email // Fallback in case the domain is not found
     }
 
     @IBAction func addButtonPressed(_ sender: Any) {

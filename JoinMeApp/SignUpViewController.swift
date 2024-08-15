@@ -39,11 +39,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
-                
-                self.performSegue(withIdentifier: "signUpSegue", sender: self)
-                
                 //adds user to the core data entity "user"
-                self.addUser(username: self.userTextField.text!, name:self.nameField.text!, hometown: self.hometownField.text!)
+                self.addUser()
+                self.performSegue(withIdentifier: "signUpSegue", sender: self)
                 
                 //this should blank out all the text fields allowing for another account to be made later
                 self.userTextField.text = nil
@@ -172,19 +170,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true)
     }
     
-    func addUser(username: String, name:String, hometown:String) {
+    func addUser() {
         let friends: [String] = []
         let feed: [PostClass] = []
         let accepted: [PostClass] = []
         let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
-        userTemp.setValue(username, forKey: "username")
+        userTemp.setValue(userTextField.text, forKey: "username")
         userTemp.setValue(friends, forKey: "friends")
         userTemp.setValue(feed, forKey: "feed")
         userTemp.setValue(accepted, forKey: "accepted")
         userTemp.setValue(picture, forKey: "picture")
-        userTemp.setValue(name, forKey: "name")
-        userTemp.setValue(hometown, forKey: "hometown")
+        userTemp.setValue(nameField.text, forKey: "name")
+        userTemp.setValue(hometownField.text, forKey: "hometown")
+        userTemp.setValue("", forKey: "bio")
         saveContext()
     }
     

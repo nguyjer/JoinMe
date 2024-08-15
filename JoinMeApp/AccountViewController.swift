@@ -12,10 +12,11 @@ import FirebaseAuth
 
 class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
+    @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    let profileProperties:[String] = ["Name", "Username", "Homecity", "Bio"]
+    let profileProperties:[String] = ["Name", "Homecity", "Bio"]
     let picker = UIImagePickerController()
     var currentUser: NSObject!
     var picture1:PictureClass!
@@ -32,10 +33,12 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePicture.image = picture1.picture
         
         picker.delegate = self
+        
+        bioLabel.text = currentUser.value(forKey: "bio") as? String
         usernameLabel.text = currentUser.value(forKey: "username") as? String
         currentData.append((currentUser.value(forKey: "name") as? String)!)
-        currentData.append(usernameLabel.text!)
         currentData.append((currentUser.value(forKey: "hometown") as? String)!)
+        currentData.append(((currentUser.value(forKey: "bio")) as? String)!)
         currentData.append("")
         
     }
@@ -68,7 +71,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return profileProperties.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -133,23 +136,18 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func userUpdated(input: String, type: String) {
         switch type {
-        case "Username":
-            usernameLabel.text = input
-            currentData[1] = input
-//            currentUser.setValue(input, forKey: "username")
-//            Auth.auth().currentUser?.updateEmail(to: input + "@joinme.com")
-            //cannot change username since firebase
-            break
         case "Name":
             currentData[0] = input
             currentUser.setValue(input, forKey: "name")
             break
         case "Homecity":
-            currentData[2] = input
+            currentData[1] = input
             currentUser.setValue(input, forKey: "hometown")
             break
         case "Bio":
-            currentData[3] = input
+            currentData[2] = input
+            bioLabel.text = input
+            currentUser.setValue(input, forKey: "bio")
             break
         default:
             break
