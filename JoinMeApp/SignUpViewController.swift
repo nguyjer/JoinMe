@@ -126,7 +126,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailTextField.placeholder = "Email"
         numberTextField.placeholder = "Number"
         nameField.placeholder = "Name"
-        hometownField.placeholder = "HomeTown"
+        hometownField.placeholder = "Hometown"
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -173,9 +173,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func addUser(username: String, name:String, hometown:String) {
-        var friends: [String] = []
-        var feed: [PostClass] = []
-        var accepted: [PostClass] = []
+        let friends: [String] = []
+        let feed: [PostClass] = []
+        let accepted: [PostClass] = []
         let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
         let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
         userTemp.setValue(username, forKey: "username")

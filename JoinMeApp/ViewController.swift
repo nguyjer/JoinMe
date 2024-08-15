@@ -10,6 +10,7 @@ import FirebaseAuth
 import CoreData
 import SideMenu
 import UserNotifications
+import EventKit
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
@@ -57,8 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         sideMenu = SideMenuNavigationController(rootViewController: menu)
         sideMenu?.leftSide = false
         SideMenuManager.default.rightMenuNavigationController = sideMenu
-        SideMenuManager.default.addPanGestureToPresent(toView: view)
-        
+
         notiBellCheck(request: false)
     }
     
@@ -234,14 +234,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.eventTitle) at \(currPost.location)"
         }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let formattedStart = formatter.string(from: currPost.startDate)
+        let formattedEnd = formatter.string(from: currPost.endDate)
+        
         cell.profilePicture.image = getImage(username: currPost.username)
-        cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
+        cell.dateScheduled.text = "When: \(formattedStart)\nUntil: \(formattedEnd)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // find post in personalList that corresponds to the selected row in feedList
+            let postToDelete = feedList[indexPath.row]
+                
+            if let indexInPersonalList = personalList.firstIndex(where: { $0.eventIdentifier == postToDelete.eventIdentifier }) {
+                // remove from personalList
+                personalList.remove(at: indexInPersonalList)
+                    
+                // remove from calendar
+                let eventStore = EKEventStore()
+                if let eventToRemove = eventStore.event(withIdentifier: postToDelete.eventIdentifier) {
+                    do {
+                        try eventStore.remove(eventToRemove, span: .thisEvent)
+                    } catch {
+                        print("Error removing event: \(error)")
+                    }
+                }
+                feedList.remove(at: indexPath.row)
+                // save to Core Data
+                updateUser()
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let currDate = Date()
+        
         let results = retrieveUsers()
         for currResult in results {
             //checks to find the current user entity with the current use logged in with firebase Auth
@@ -255,18 +288,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
         }
-        tableView.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            feedList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            updateUser()
-            
+        feedList = feedList.filter { post in
+            currDate < post.endDate
         }
+        tableView.reloadData()
     }
     
     // function to clear core data
@@ -360,7 +385,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func declineAction(in cell: PostTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell){
             feedList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+                            guard let self = self else { return }
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+            }
             updateUser()
         }
     }
@@ -368,5 +396,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func reloadTable() {
         tableView.reloadData()
     }
+    
 }
 

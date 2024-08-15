@@ -15,6 +15,7 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
     var delegate: UIViewController!
     var feedList: [PostClass] = []
     var personalList: [PostClass] = []
+    var pastList: [PostClass] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,12 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 200
-        
+        let currDate = Date()
+        for post in personalList {
+            if currDate >= post.endDate {
+                pastList.append(post)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,18 +43,16 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        personalList.count
+        pastList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pastCell", for: indexPath) as! PostTableViewCell
         cell.delegate = self
         
-        let tempList = personalList.reversed()
-        
         let row = indexPath.row
         
-        let currPost = personalList[row]
+        let currPost = pastList[row]
         
         let usernameNoEmail = currPost.username.replacingOccurrences(of: "@joinme.com", with: "")
         
@@ -58,8 +62,14 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             cell.usernameInvite.text = "\(usernameNoEmail) invited others for \(currPost.location)"
         }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let formattedStart = formatter.string(from: currPost.startDate)
+        let formattedEnd = formatter.string(from: currPost.endDate)
+        
         cell.profilePicture.image = getImage(username: currPost.username)
-        cell.dateScheduled.text = "When: \(currPost.startDate) - \(currPost.endDate)"
+        cell.dateScheduled.text = "When: \(formattedStart)\nUntil: \(formattedEnd)"
         cell.descriptionLabel.text = currPost.descript
         return cell
     }

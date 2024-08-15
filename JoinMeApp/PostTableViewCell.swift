@@ -34,8 +34,10 @@ class PostTableViewCell: UITableViewCell {
         otherVC.acceptAction(in: self)
     }
     
-    
     @IBAction func declineButton(_ sender: Any) {
+        acceptButton.isHidden = true
+        declineButton.isHidden = true
+        statusLabel.text = "Deleted"
         let otherVC = delegate as! feed
         otherVC.declineAction(in: self)
     }
@@ -53,6 +55,7 @@ class PostTableViewCell: UITableViewCell {
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.masksToBounds = true
         usernameInvite.numberOfLines = 4
+        dateScheduled.numberOfLines = 4
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

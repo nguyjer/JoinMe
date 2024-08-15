@@ -25,11 +25,47 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
+                self.checkUserExist(username: (user?.email?.replacingOccurrences(of: "@joinme.com", with: ""))!)
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
             }
         }
+    }
+    
+    func checkUserExist(username: String) {
+        let friends: [String] = []
+        let feed: [PostClass] = []
+        let accepted: [PostClass] = []
+        let fetchedResults = retrieveUsers()
+        for result in fetchedResults {
+            if username == result.value(forKey: "username") as! String {
+                return
+            }
+        }
+        let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+        let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
+        userTemp.setValue(username, forKey: "username")
+        userTemp.setValue(friends, forKey: "friends")
+        userTemp.setValue(feed, forKey: "feed")
+        userTemp.setValue(accepted, forKey: "accepted")
+        userTemp.setValue(picture, forKey: "picture")
+        userTemp.setValue("John Doe", forKey: "name")
+        userTemp.setValue("Austin", forKey: "hometown")
+        saveContext()
+    }
+    
+    func retrieveUsers() -> [NSManagedObject] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        do {
+            if let fetchedResults = try context.fetch(request) as? [NSManagedObject] {
+                return fetchedResults
+            }
+        } catch {
+            print("Error occurred while retrieving data: \(error)")
+            abort()
+        }
+        return []
     }
     
     func clearCoreData() {
@@ -86,9 +122,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         let alert = UIAlertController(
-                    title: "Sign Up Error",
-                    message: "",
-                    preferredStyle: .alert)
+            title: "Sign Up Error",
+            message: "",
+            preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         //added in order to meet firebases email format
         let username = emailField.text! + ("@joinme.com")
@@ -100,49 +136,4 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    
-//    @IBAction func signupButtonPressed(_ sender: Any) {
-//        let alert = UIAlertController(
-//            title: "Register",
-//            message: "Please register an account with us first",
-//            preferredStyle: .alert)
-//        
-//        alert.addTextField { tfEmail in
-//            tfEmail.placeholder = "Please enter your email"
-//            
-//        }
-//        
-//        alert.addTextField { tfPassword in
-//            tfPassword.isSecureTextEntry = true
-//            tfPassword.placeholder = "Please enter your password"
-//        }
-//    
-//        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-//            let emailField = alert.textFields![0]
-//            let passwordField = alert.textFields![1]
-//            
-//            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) {
-//                authResult, error in
-//                if let error = error as NSError? {
-//                    self.errorMessage.text = "\(error.localizedDescription)"
-//                } else {
-//                    self.errorMessage.text = ""
-//                }
-//            }
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//        
-//        alert.addAction(saveAction)
-//        alert.addAction(cancelAction)
-//        
-//        present(alert, animated: true)
-//        
-//        
-//    }
-
-     
-        
-    
 }
