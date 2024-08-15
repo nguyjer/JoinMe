@@ -92,14 +92,9 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         }
         
         let usernameNoEmail = post.username.replacingOccurrences(of: "@joinme.com", with: "")
-        cell.nameLabel.text = usernameNoEmail
-        cell.eventLabel.text = post.descript
-        
-        geocodeAddress(post.location, mapView: mapView, titleEvent: post.descript)
-        { [weak self] distance in
-            cell.distanceLabel.text = distance != nil ? "\(distance!)m" : "Distance unavailable"
-        }
-        cell.distanceLabel.textColor = .lightGray
+        cell.nameLabel.text = "\(usernameNoEmail): \(post.eventTitle)"
+        cell.addressLabel.text = post.location
+        cell.addressLabel.textColor = .lightGray
         
         return cell
     }
@@ -134,11 +129,11 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = postList[indexPath.row]
-        highlightAddress(post.location, mapView: mapView)
+        highlightAddress(post.location, mapView: mapView, post.eventTitle)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func highlightAddress(_ address: String, mapView: MKMapView) {
+    func highlightAddress(_ address: String, mapView: MKMapView, _ titleEvent:String) {
         geocoder.geocodeAddressString(address) { [weak self] (placemarks, error) in
             guard let self = self else { return }
             if let error = error {
@@ -149,6 +144,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
             if let placemark = placemarks?.first, let location = placemark.location {
                 let coordinate = location.coordinate
                 
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = titleEvent
+                mapView.addAnnotation(annotation)
                 // Center the map on the found location
                 let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
                 mapView.setRegion(region, animated: true)
@@ -160,7 +159,5 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         userLocation = locations.last
         tableView.reloadData()
     }
-    
-    
 }
 

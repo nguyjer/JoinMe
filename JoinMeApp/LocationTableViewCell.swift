@@ -9,7 +9,6 @@ import UIKit
 
 class LocationTableViewCell: UITableViewCell {
    
-    @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
 }
