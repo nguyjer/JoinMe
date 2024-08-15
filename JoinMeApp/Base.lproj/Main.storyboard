@@ -843,7 +843,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="distanceLabel" destination="hSg-6B-yBt" id="kP0-d3-bJ2"/>
+                                            <outlet property="addressLabel" destination="hSg-6B-yBt" id="Vpc-11-Lmb"/>
                                             <outlet property="nameLabel" destination="Qzp-V2-JmQ" id="ccb-Gc-1u9"/>
                                         </connections>
                                     </tableViewCell>

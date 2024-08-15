@@ -22,6 +22,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
     let locationManager = CLLocationManager()
     var userLocation: CLLocation?
     var eventDistances:[String] = []
+    let annotation = MKPointAnnotation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,47 +85,17 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! LocationTableViewCell
         let row = indexPath.row
         let post = postList[row]
-        
-        if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "") == post.username {
-            cell.nameLabel.text = "You"
+       
+        if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() == post.username.lowercased() {
+            print("here")
+            cell.nameLabel.text = "You: \(post.eventTitle)"
         } else {
-            cell.nameLabel.text = post.username.replacingOccurrences(of: "@joinme.com", with: "")
+            cell.nameLabel.text = "\(post.username.replacingOccurrences(of: "@joinme.com", with: "")): \(post.eventTitle)"
         }
-        
-        let usernameNoEmail = post.username.replacingOccurrences(of: "@joinme.com", with: "")
-        cell.nameLabel.text = "\(usernameNoEmail): \(post.eventTitle)"
         cell.addressLabel.text = post.location
         cell.addressLabel.textColor = .lightGray
         
         return cell
-    }
-
-    func geocodeAddress(_ address: String, mapView: MKMapView, titleEvent: String, completion: @escaping (Double?) -> Void) {
-        geocoder.geocodeAddressString(address) { [weak self]
-            (placemarks, error) in
-            guard let self = self else { return }
-            if let error = error {
-                print("Geocoding error: \(error.localizedDescription)")
-                return
-            }
-            
-            if let placemark = placemarks?.first, let location = placemark.location {
-                let coordinate = location.coordinate
-                //draw the annotation
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = coordinate
-                annotation.title = titleEvent
-                mapView.addAnnotation(annotation)
-                mapView.showAnnotations(mapView.annotations, animated: true)
-                
-                if let userLocation = self.userLocation {
-                    let distance = userLocation.distance(from: location)
-                    completion(distance)
-                } else {
-                    completion(nil)
-                }
-            }
-        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,8 +114,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
                 
             if let placemark = placemarks?.first, let location = placemark.location {
                 let coordinate = location.coordinate
-                
-                let annotation = MKPointAnnotation()
+                mapView.removeAnnotation(annotation)
                 annotation.coordinate = coordinate
                 annotation.title = titleEvent
                 mapView.addAnnotation(annotation)
