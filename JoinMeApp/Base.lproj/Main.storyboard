@@ -784,11 +784,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wVf-BY-Zjh">
-                                <rect key="frame" x="0.0" y="135" width="393" height="26"/>
+                                <rect key="frame" x="0.0" y="132" width="393" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Standard"/>
-                                    <segment title="Hybirid"/>
+                                    <segment title="Hybrid"/>
                                     <segment title="Satellite"/>
                                 </segments>
                                 <connections>
@@ -885,6 +885,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBb-Q9-rfT">
+                                <rect key="frame" x="333" y="185" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonConfiguration key="configuration" style="filled" image="location" catalog="system"/>
+                                <connections>
+                                    <action selector="resetButton:" destination="bDf-ig-hrY" eventType="touchUpInside" id="tp4-ot-s4K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JS5-Jr-tKS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1447,6 +1455,7 @@
         <image name="bell" catalog="system" width="125" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="65"/>
+        <image name="location" catalog="system" width="128" height="119"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="shift.fill" catalog="system" width="128" height="106"/>
         <systemColor name="linkColor">

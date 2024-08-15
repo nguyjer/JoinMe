@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import CoreData
 import FirebaseAuth
+import CoreLocation
 
 class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
@@ -20,9 +21,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
     var postList:[PostClass] = []
     let geocoder = CLGeocoder()
     let locationManager = CLLocationManager()
-    var userLocation: CLLocation?
+    var userLocation: MKUserLocation?
     var eventDistances:[String] = []
     let annotation = MKPointAnnotation()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         tableView.delegate = self
         tableView.dataSource = self
         delegate?.dismiss(animated: false)
-        
+        userLocation = mapView.userLocation
     }
     
     //    override func viewDidAppear(_ animated: Bool) {
@@ -60,11 +62,12 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         guard let location = userLocation.location else { return }
         let center = location.coordinate
-        let NS = 20000.0 // 15 km
-        let EW = 20000.0 // 15 km
+        let NS = 20000.0 // 20 km
+        let EW = 20000.0 // 20 km
         let region = MKCoordinateRegion(center: center, latitudinalMeters: NS, longitudinalMeters: EW)
         mapView.setRegion(region, animated: true)
     }
+    
     
     @IBAction func mapChange(_ sender: Any) {
         switch mapType.selectedSegmentIndex {
@@ -77,6 +80,13 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         }
     }
     
+    @IBAction func resetButton(_ sender: Any) {
+        let NS = 10000.0 // 10 km
+        let EW = 10000.0 // 10 km
+        let region = MKCoordinateRegion(center: userLocation!.location!.coordinate, latitudinalMeters: NS, longitudinalMeters: EW)
+        mapView.setRegion(region, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postList.count
     }
@@ -87,7 +97,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         let post = postList[row]
        
         if Auth.auth().currentUser?.email!.replacingOccurrences(of: "@joinme.com", with: "").lowercased() == post.username.lowercased() {
-            print("here")
             cell.nameLabel.text = "You: \(post.eventTitle)"
         } else {
             cell.nameLabel.text = "\(post.username.replacingOccurrences(of: "@joinme.com", with: "")): \(post.eventTitle)"
@@ -123,11 +132,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
                 mapView.setRegion(region, animated: true)
             }
         }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        userLocation = locations.last
-        tableView.reloadData()
     }
 }
 
