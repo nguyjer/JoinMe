@@ -47,6 +47,7 @@
 		D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */; };
 		D9F0BBE12C6C26A4003A66F9 /* UINavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */; };
 		D9F0BBE52C6EBED7003A66F9 /* ExpandedFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0BBE42C6EBED7003A66F9 /* ExpandedFriendsViewController.swift */; };
+		D9F0BBE72C6EEA81003A66F9 /* README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D9F0BBE62C6EEA81003A66F9 /* README.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastEventsViewController.swift; sourceTree = "<group>"; };
 		D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavViewController.swift; sourceTree = "<group>"; };
 		D9F0BBE42C6EBED7003A66F9 /* ExpandedFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedFriendsViewController.swift; sourceTree = "<group>"; };
+		D9F0BBE62C6EEA81003A66F9 /* README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = README.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		D96BA0882C3E3C3F00B44B7D /* JoinMeApp */ = {
 			isa = PBXGroup;
 			children = (
+				D9F0BBE62C6EEA81003A66F9 /* README.pdf */,
 				D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */,
 				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
 				98E41F012C61600D001E4E19 /* PrivacyViewController.swift */,
@@ -244,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9F0BBE72C6EEA81003A66F9 /* README.pdf in Resources */,
 				D96BA0962C3E3C4000B44B7D /* Assets.xcassets in Resources */,
 				54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */,
 				D96BA0992C3E3C4000B44B7D /* Base in Resources */,

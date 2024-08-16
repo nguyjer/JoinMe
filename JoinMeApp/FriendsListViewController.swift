@@ -22,7 +22,6 @@ class FriendsListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         
-        loadFriendsList()
         tableView.reloadData()
     }
     

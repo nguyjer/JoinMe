@@ -34,26 +34,26 @@ class LoginViewController: UIViewController {
     }
     
     func checkUserExist(username: String) {
-        let friends: [String] = []
-        let feed: [PostClass] = []
-        let accepted: [PostClass] = []
-        let fetchedResults = retrieveUsers()
-        for result in fetchedResults {
-            if username.lowercased() == (result.value(forKey: "username") as! String).lowercased() {
-                return
-            }
-        }
-        let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-        let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
-        userTemp.setValue(username, forKey: "username")
-        userTemp.setValue(friends, forKey: "friends")
-        userTemp.setValue(feed, forKey: "feed")
-        userTemp.setValue(accepted, forKey: "accepted")
-        userTemp.setValue(picture, forKey: "picture")
-        userTemp.setValue("John Doe", forKey: "name")
-        userTemp.setValue("Austin", forKey: "hometown")
-        userTemp.setValue("I live in Austin and go to UT", forKey: "bio")
-        saveContext()
+//        let friends: [String] = []
+//        let feed: [PostClass] = []
+//        let accepted: [PostClass] = []
+//        let fetchedResults = retrieveUsers()
+//        for result in fetchedResults {
+//            if username.lowercased() == (result.value(forKey: "username") as! String).lowercased() {
+//                return
+//            }
+//        }
+//        let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+//        let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
+//        userTemp.setValue(username, forKey: "username")
+//        userTemp.setValue(friends, forKey: "friends")
+//        userTemp.setValue(feed, forKey: "feed")
+//        userTemp.setValue(accepted, forKey: "accepted")
+//        userTemp.setValue(picture, forKey: "picture")
+//        userTemp.setValue("John Doe", forKey: "name")
+//        userTemp.setValue("Austin", forKey: "hometown")
+//        userTemp.setValue("I live in Austin and go to UT", forKey: "bio")
+//        saveContext()
     }
     
     func retrieveUsers() -> [NSManagedObject] {

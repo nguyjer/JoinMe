@@ -18,23 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pj-mdG">
-                                <rect key="frame" x="29" y="244" width="335" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pj-mdG">
+                                <rect key="frame" x="29" y="242.66666666666663" width="335" height="34"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="db4-4X-Sgc">
-                                <rect key="frame" x="29" y="300" width="335" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="db4-4X-Sgc">
+                                <rect key="frame" x="29" y="298.66666666666669" width="335" height="34"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="one-time-code"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoC-yt-NZu">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoC-yt-NZu">
                                 <rect key="frame" x="154" y="470" width="84" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
@@ -42,18 +39,16 @@
                                     <segue destination="6qI-lr-X0G" kind="presentation" identifier="registerSegue" modalPresentationStyle="fullScreen" id="UCe-fg-kDu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd4-Pa-RCJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd4-Pa-RCJ">
                                 <rect key="frame" x="93" y="98" width="207" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="63"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="shadowColor" red="0.35166169679999998" green="0.2978869791" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="shadowOffset" width="4" height="0.0"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agd-Ps-0Gu">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agd-Ps-0Gu">
                                 <rect key="frame" x="154" y="409" width="84" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
@@ -64,6 +59,22 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qQa-VD-dVL"/>
                         <color key="backgroundColor" red="0.52941176470588236" green="0.43137254901960786" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qQa-VD-dVL" firstAttribute="trailing" secondItem="db4-4X-Sgc" secondAttribute="trailing" constant="29" id="2Aq-XJ-PmZ"/>
+                            <constraint firstItem="Mvb-pj-mdG" firstAttribute="centerX" secondItem="qQa-VD-dVL" secondAttribute="centerX" id="6ht-lN-QHC"/>
+                            <constraint firstItem="db4-4X-Sgc" firstAttribute="top" secondItem="Mvb-pj-mdG" secondAttribute="bottom" constant="22" id="7Ux-T4-FsV"/>
+                            <constraint firstItem="qQa-VD-dVL" firstAttribute="trailing" secondItem="Mvb-pj-mdG" secondAttribute="trailing" constant="29" id="8Fk-Ha-ugk"/>
+                            <constraint firstItem="HoC-yt-NZu" firstAttribute="firstBaseline" secondItem="agd-Ps-0Gu" secondAttribute="baseline" constant="43" symbolType="layoutAnchor" id="9Vm-aS-LDp"/>
+                            <constraint firstItem="Mvb-pj-mdG" firstAttribute="leading" secondItem="qQa-VD-dVL" secondAttribute="leading" constant="29" id="9l5-Ex-qM1"/>
+                            <constraint firstItem="db4-4X-Sgc" firstAttribute="centerX" secondItem="qQa-VD-dVL" secondAttribute="centerX" id="AO7-9Y-r8U"/>
+                            <constraint firstItem="db4-4X-Sgc" firstAttribute="leading" secondItem="qQa-VD-dVL" secondAttribute="leading" constant="29" id="Gkk-df-Toq"/>
+                            <constraint firstItem="Fd4-Pa-RCJ" firstAttribute="top" secondItem="qQa-VD-dVL" secondAttribute="top" constant="39" id="M3A-bN-hDV"/>
+                            <constraint firstItem="Fd4-Pa-RCJ" firstAttribute="centerX" secondItem="qQa-VD-dVL" secondAttribute="centerX" id="cnD-rM-Oiz"/>
+                            <constraint firstItem="agd-Ps-0Gu" firstAttribute="top" secondItem="db4-4X-Sgc" secondAttribute="bottom" constant="75" id="dh1-wo-ku7"/>
+                            <constraint firstItem="agd-Ps-0Gu" firstAttribute="centerX" secondItem="qQa-VD-dVL" secondAttribute="centerX" id="e1F-NK-wJp"/>
+                            <constraint firstItem="Mvb-pj-mdG" firstAttribute="top" secondItem="Fd4-Pa-RCJ" secondAttribute="bottom" constant="72" id="hZB-rH-9WY"/>
+                            <constraint firstItem="HoC-yt-NZu" firstAttribute="centerX" secondItem="qQa-VD-dVL" secondAttribute="centerX" id="iiO-H1-CaJ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="Mvb-pj-mdG" id="1xs-I9-MlO"/>
@@ -826,15 +837,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzp-V2-JmQ">
-                                                    <rect key="frame" x="62" y="0.0" width="269" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzp-V2-JmQ">
+                                                    <rect key="frame" x="62" y="0.0" width="269" height="60"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSg-6B-yBt">
-                                                    <rect key="frame" x="10" y="52" width="373" height="21"/>
+                                                    <rect key="frame" x="10" y="68" width="373" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -1513,7 +1524,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="rqw-7Z-iwd"/>
         <segue reference="aJR-hn-Ycp"/>
-        <segue reference="V3w-H9-efq"/>
+        <segue reference="b9b-hE-Mlo"/>
         <segue reference="Pwp-0v-ha3"/>
     </inferredMetricsTieBreakers>
     <resources>
