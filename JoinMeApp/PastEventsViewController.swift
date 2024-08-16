@@ -78,7 +78,7 @@ class PastEventsViewController: UIViewController, UITableViewDelegate, UITableVi
     func getImage(username: String) -> UIImage {
         let results = retrievePosts()
         for user in results {
-            if username == user.value(forKey: "username") as! String {
+            if username.lowercased() == (user.value(forKey: "username") as! String).lowercased() {
                 return (user.value(forKey: "picture") as! PictureClass).picture
             }
         }

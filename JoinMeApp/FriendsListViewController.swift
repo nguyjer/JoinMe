@@ -67,8 +67,8 @@ class FriendsListViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 for buddy in fetchedResults {
                     
-                    var buddyUser = buddy.value(forKey: "username") as? String ?? ""
-                    var buddyUserLower = buddyUser.lowercased()
+                    let buddyUser = buddy.value(forKey: "username") as? String ?? ""
+                    let buddyUserLower = buddyUser.lowercased()
                     
                     if usernames.contains(buddyUserLower) {
                         finalResults.append(buddy)

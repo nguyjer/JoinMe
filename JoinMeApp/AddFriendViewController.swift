@@ -22,10 +22,8 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        print("retrieving")
+
         let fetchedResults = retrieveUsers()
-        print("retrieved")
         let userFriends = currentUser?.value(forKey: "friends") as! [String]
         for friend in userFriends {
             for result in fetchedResults {
@@ -34,9 +32,8 @@ class AddFriendViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        print("finished view")
     }
-        // Do any additional setup after loading the view.
+
     func retrieveUsers() -> [NSManagedObject] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         

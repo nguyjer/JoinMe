@@ -17,12 +17,12 @@ protocol getInfo {
 }
 
 class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
-
-    var delegate: UIViewController!
+    
     let alert = UIAlertController(
                 title: "One or more fields left blank",
                 message: "Please fill them all out.",
                 preferredStyle: .alert)
+    let eventStore = EKEventStore()
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var inviteButton: UIButton!
@@ -30,6 +30,8 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var eventTextField: UITextField!
+    
+    var delegate: UIViewController!
     var currentUser: NSManagedObject?
     var eventIdentifier: String?
     var startDate: Date?
@@ -172,7 +174,7 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
     }
     
     func postMessage(message: String) {
-
+        print(message)
     }
     
     func retrieveUsers() -> [NSManagedObject] {
@@ -202,10 +204,6 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
         }
     }
     
-    
-    //store eventstore in user entity
-    let eventStore = EKEventStore()
-    
     func createEvent() {
         guard let title = eventTextField.text, !title.isEmpty else {
             postMessage(message: "Title is missing")
@@ -221,7 +219,6 @@ class UploadPostViewController: UIViewController, getInfo, UITextFieldDelegate {
         do {
             try eventStore.save(event, span: .thisEvent)
             if let eventIdentifier = event.eventIdentifier {
-                print("in here")
                 changeDate(eventID: eventIdentifier, start: event.startDate, end: event.endDate)
                 postMessage(message: "Event added to calendar")
             } else {

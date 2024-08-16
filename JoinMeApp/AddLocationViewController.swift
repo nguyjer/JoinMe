@@ -64,7 +64,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 if let placemark = placemarks?.first {
                     let address = self.formatAddress(from: placemark)
                     self.selectedAddress = address
-                    print("Tapped location address: \(address)")
                     let otherVC = self.delegate as! getInfo
                     otherVC.addedLocation(selected: self.selectedAddress!)
                     

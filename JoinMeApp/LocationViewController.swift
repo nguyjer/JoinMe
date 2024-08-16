@@ -40,14 +40,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate, UITableViewDe
         userLocation = mapView.userLocation
     }
     
-    //    override func viewDidAppear(_ animated: Bool) {
-    ////        if let homeDelegate = delegate {
-    ////            homeDelegate.dismiss(animated: true)
-    ////        }
-    //        super.viewDidAppear(true)
-    //        delegate?.dismiss(animated: false)
-    //    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeSegue",
             let destination = segue.destination as? UINavViewController{

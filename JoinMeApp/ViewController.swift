@@ -30,8 +30,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var notiBell: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     let textCellIdentifier = "postCell"
+    let eventStore = EKEventStore()
     var notiCheck = false
-    var currentUser: NSManagedObject? // Updated to NSManagedObject
+    var currentUser: NSManagedObject?
     private var feedList:[PostClass] = []
     private var personalList:[PostClass] = []
 
@@ -139,10 +140,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else if segue.identifier == "friendsListSegue",
                   let destination = segue.destination as? FriendsListViewController {
             destination.currentUser = currentUser
-//            let destination = segue.destination as? FriendsListViewController {
-//                    if let user = currentUser, let username = user.value(forKey: "username") as? String {
-//                        destination.currentUser = username
-//                    }
         } else if segue.identifier == "expandedPostSegue",
                   let destination = segue.destination as?
                     ExpandedPostViewController {
@@ -175,13 +172,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 case "Settings":
                     performSegue(withIdentifier: "settingsSegue", sender: self)
                 case "Logout":
-                do {
-                    //if user is signed in it will sign them out then dismiss the current screen
-                    try Auth.auth().signOut()
-                    self.dismiss(animated: true)
-                } catch {
-                    print("Sign out error")
-                }
+                    do {
+                        //if user is signed in it will sign them out then dismiss the current screen
+                        try Auth.auth().signOut()
+                        self.dismiss(animated: true)
+                    } catch {
+                        print("Sign out error")
+                    }
                     break
                 default:
                     break
@@ -323,27 +320,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
     
-    // function to clear core data
-    func clearCoreData() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        var fetchedResults: [NSManagedObject]
-        
-        do {
-            try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
-            if fetchedResults.count > 0 {
-                for result:AnyObject in fetchedResults {
-                    context.delete(result as! NSManagedObject)
-                }
-                saveContext()
-            }
-        } catch {
-            print("Error during deleting data")
-            abort()
-        }
-    }
-    
-    
     //saves the current entities
     func saveContext () {
         if context.hasChanges {
@@ -397,9 +373,80 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateUser()
     }
     
+    func createEvent(endDate: Date, startDate: Date, eventTitle: String) {
+        let event = EKEvent(eventStore: eventStore)
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        
+        do {
+            try eventStore.save(event, span: .thisEvent)
+            if event.eventIdentifier != nil {
+                print("Event added to calendar")
+            } else {
+                print("Failed to get event identifier")
+            }
+        } catch {
+            print("Event not added due to error: \(error.localizedDescription)")
+        }
+    }
+
+    func addEventCalendar(endDate: Date, startDate: Date, eventTitle: String) {
+        let authorizationStatus = EKEventStore.authorizationStatus(for: .event)
+        
+        switch authorizationStatus {
+        case .notDetermined:
+            if #available(iOS 17.0, *) {
+                // Request full access to events
+                eventStore.requestFullAccessToEvents { (granted, error) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            self.createEvent(endDate: endDate, startDate: startDate, eventTitle: eventTitle)
+                        } else {
+                            print("No calendar access")
+                        }
+                    }
+                }
+            } else {
+                // Fallback for earlier iOS versions
+                eventStore.requestAccess(to: .event) { (granted, error) in
+                    DispatchQueue.main.async {
+                        if granted {
+                            self.createEvent(endDate: endDate, startDate: startDate, eventTitle: eventTitle)
+                        } else {
+                            print("No calendar access")
+                        }
+                    }
+                }
+            }
+            break
+        case .authorized:
+            self.createEvent(endDate: endDate, startDate: startDate, eventTitle: eventTitle)
+            break
+        case .denied:
+            print("Calendar access denied")
+            break
+        case .restricted:
+            print("Calendar access restricted")
+            break
+        case .fullAccess:
+            print("Calendar access has full access")
+            break
+        case .writeOnly:
+            print("Calendar access write only")
+            break
+        default:
+            print("Unknown authorization status")
+            break
+        }
+    }
+    
     func acceptAction(in cell: PostTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell){
-            personalList.append(feedList[indexPath.row])
+            let currPost = feedList[indexPath.row]
+            createEvent(endDate: currPost.endDate, startDate: currPost.startDate, eventTitle: currPost.eventTitle)
+            personalList.append(currPost)
             feedList.remove(at: indexPath.row)
             updateUser()
             
@@ -409,6 +456,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
+        
     }
     
     func declineAction(in cell: PostTableViewCell) {
@@ -427,4 +475,3 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
 }
-

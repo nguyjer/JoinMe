@@ -369,7 +369,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="93C-eO-cjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3012.9770992366412" y="622.53521126760563"/>
+            <point key="canvasLocation" x="2996" y="668"/>
         </scene>
         <!--Upload Post View Controller-->
         <scene sceneID="EmA-U1-iN4">
@@ -951,6 +951,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRE-LG-LZk">
                                 <rect key="frame" x="16" y="268" width="361" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1158,7 +1159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fc-L7-Z9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1934" y="623"/>
+            <point key="canvasLocation" x="1805" y="668"/>
         </scene>
         <!--Privacy View Controller-->
         <scene sceneID="WmQ-DB-qHM">
@@ -1452,7 +1453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbe-vc-NuX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4014.5038167938928" y="622.53521126760563"/>
+            <point key="canvasLocation" x="4112" y="668"/>
         </scene>
         <!--Add New Friend View Controller-->
         <scene sceneID="229-xp-bIE">
@@ -1522,10 +1523,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rqw-7Z-iwd"/>
+        <segue reference="DPx-vn-yJL"/>
         <segue reference="aJR-hn-Ycp"/>
-        <segue reference="b9b-hE-Mlo"/>
-        <segue reference="Pwp-0v-ha3"/>
+        <segue reference="V3w-H9-efq"/>
+        <segue reference="CQv-UF-iP7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bell" catalog="system" width="125" height="128"/>

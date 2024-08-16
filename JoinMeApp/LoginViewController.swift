@@ -19,41 +19,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        clearCoreData()
         emailField.autocorrectionType = .no
         passwordField.autocorrectionType = .no
         Auth.auth().addStateDidChangeListener() {
             auth, user in
             if user != nil {
-                self.checkUserExist(username: (Auth.auth().currentUser?.email?.replacingOccurrences(of: "@joinme.com", with: ""))!)
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 self.emailField.text = nil
                 self.passwordField.text = nil
             }
         }
-    }
-    
-    func checkUserExist(username: String) {
-//        let friends: [String] = []
-//        let feed: [PostClass] = []
-//        let accepted: [PostClass] = []
-//        let fetchedResults = retrieveUsers()
-//        for result in fetchedResults {
-//            if username.lowercased() == (result.value(forKey: "username") as! String).lowercased() {
-//                return
-//            }
-//        }
-//        let userTemp = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-//        let picture = PictureClass(picture: UIImage(named: "GenericAvatar")!)
-//        userTemp.setValue(username, forKey: "username")
-//        userTemp.setValue(friends, forKey: "friends")
-//        userTemp.setValue(feed, forKey: "feed")
-//        userTemp.setValue(accepted, forKey: "accepted")
-//        userTemp.setValue(picture, forKey: "picture")
-//        userTemp.setValue("John Doe", forKey: "name")
-//        userTemp.setValue("Austin", forKey: "hometown")
-//        userTemp.setValue("I live in Austin and go to UT", forKey: "bio")
-//        saveContext()
     }
     
     func retrieveUsers() -> [NSManagedObject] {
@@ -67,41 +42,6 @@ class LoginViewController: UIViewController {
             abort()
         }
         return []
-    }
-    
-    func clearCoreData() {
-        var request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        var fetchedResults: [NSManagedObject]
-        
-        do {
-            try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
-            if fetchedResults.count > 0 {
-                for result:AnyObject in fetchedResults {
-                    context.delete(result as! NSManagedObject)
-                }
-                saveContext()
-            }
-        } catch {
-            print("Error during deleting data")
-            abort()
-        }
-        
-        request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        
-        do {
-            try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
-            if fetchedResults.count > 0 {
-                for result:AnyObject in fetchedResults {
-                    context.delete(result as! NSManagedObject)
-                }
-                saveContext()
-            }
-        } catch {
-            print("Error during deleting data")
-            abort()
-        }
     }
     
     func saveContext () {

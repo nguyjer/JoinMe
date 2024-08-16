@@ -132,10 +132,11 @@ class UpcomingEventsViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    //helper method to retrieve users image
     func getImage(username: String) -> UIImage {
         let results = retrieveUsers()
         for user in results {
-            if username == user.value(forKey: "username") as! String {
+            if username.lowercased() == (user.value(forKey: "username") as! String).lowercased() {
                 return (user.value(forKey: "picture") as! PictureClass).picture
             }
         }

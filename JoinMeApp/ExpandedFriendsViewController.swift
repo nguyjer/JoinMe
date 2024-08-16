@@ -28,7 +28,6 @@ class ExpandedFriendsViewController: UIViewController {
         profilePicture.image = (currentFriend.value(forKey: "picture") as! PictureClass).picture
         profilePicture.layer.cornerRadius = profilePicture.frame.size.width / 2
         profilePicture.layer.masksToBounds = true
-        // Do any additional setup after loading the view.
     }
     
 

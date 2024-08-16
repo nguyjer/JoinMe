@@ -25,7 +25,7 @@ class ExpandedPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         var usersString = "Users Joining: \(post.users)"
         // Do any additional setup after loading the view.
         profilePicture.image = profilePicture1
@@ -41,16 +41,4 @@ class ExpandedPostViewController: UIViewController {
         usersString = usersString.replacingOccurrences(of: "]", with: "")
         usersJoiningLabel.text = usersString.replacingOccurrences(of: "\"", with: "")
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

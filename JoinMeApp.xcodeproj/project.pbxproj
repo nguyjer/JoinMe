@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		54400D342C6BE60300E90DC0 /* AddNewFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */; };
 		54400D362C6BF0DF00E90DC0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 54400D352C6BF0DF00E90DC0 /* FirebaseFirestore */; };
-		54400D382C6D0C3100E90DC0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54400D372C6D0C3100E90DC0 /* AuthManager.swift */; };
 		5440835A2C5C760300AA603B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544083592C5C760300AA603B /* CalendarViewController.swift */; };
 		54EE3FDA2C49883000ACF984 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EE3FD92C49883000ACF984 /* LoginViewController.swift */; };
 		54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */; };
@@ -47,12 +46,10 @@
 		D9847D1C2C581C2000D0A0C0 /* PastEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */; };
 		D9F0BBE12C6C26A4003A66F9 /* UINavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */; };
 		D9F0BBE52C6EBED7003A66F9 /* ExpandedFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0BBE42C6EBED7003A66F9 /* ExpandedFriendsViewController.swift */; };
-		D9F0BBE72C6EEA81003A66F9 /* README.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D9F0BBE62C6EEA81003A66F9 /* README.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendViewController.swift; sourceTree = "<group>"; };
-		54400D372C6D0C3100E90DC0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		544083592C5C760300AA603B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		54EE3FD92C49883000ACF984 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		54EE3FDB2C498D7800ACF984 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -91,7 +88,6 @@
 		D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastEventsViewController.swift; sourceTree = "<group>"; };
 		D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavViewController.swift; sourceTree = "<group>"; };
 		D9F0BBE42C6EBED7003A66F9 /* ExpandedFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedFriendsViewController.swift; sourceTree = "<group>"; };
-		D9F0BBE62C6EEA81003A66F9 /* README.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = README.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,39 +133,37 @@
 		D96BA0882C3E3C3F00B44B7D /* JoinMeApp */ = {
 			isa = PBXGroup;
 			children = (
-				D9F0BBE62C6EEA81003A66F9 /* README.pdf */,
-				D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */,
+				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
 				54EE3FE02C498FCE00ACF984 /* JoinMeApp.entitlements */,
-				98E41F012C61600D001E4E19 /* PrivacyViewController.swift */,
 				D96BA0892C3E3C3F00B44B7D /* AppDelegate.swift */,
-				544083592C5C760300AA603B /* CalendarViewController.swift */,
 				D96BA08B2C3E3C3F00B44B7D /* SceneDelegate.swift */,
-				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
 				D96BA0DA2C4F1EF100B44B7D /* PostClass.swift */,
 				75B26D082C640966007F8F00 /* PictureClass.swift */,
-				D96BA08F2C3E3C3F00B44B7D /* Main.storyboard */,
+				D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */,
+				D96BA08D2C3E3C3F00B44B7D /* ViewController.swift */,
+				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
+				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
 				D9F0BBE42C6EBED7003A66F9 /* ExpandedFriendsViewController.swift */,
 				98149D8C2C6D2BD1006778CF /* AddLocationViewController.swift */,
-				D9F0BBE02C6C26A4003A66F9 /* UINavViewController.swift */,
 				54400D332C6BE60300E90DC0 /* AddNewFriendViewController.swift */,
-				54400D372C6D0C3100E90DC0 /* AuthManager.swift */,
 				7534262C2C6A8076001CD878 /* AddFriendViewController.swift */,
+				D9847CF62C54655800D0A0C0 /* SideMenuTableViewController.swift */,
+				544083592C5C760300AA603B /* CalendarViewController.swift */,
+				98E41F012C61600D001E4E19 /* PrivacyViewController.swift */,
 				7534262E2C6A954C001CD878 /* ExpandedPostViewController.swift */,
-				7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */,
 				753426282C6A7458001CD878 /* FriendsListViewController.swift */,
 				75B26D062C640757007F8F00 /* HelpViewController.swift */,
-				983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */,
 				983848C72C62AEBD002CC931 /* LocationViewController.swift */,
 				98E41F052C617B17001E4E19 /* ChangeProfileViewController.swift */,
 				98E41EFF2C615FC0001E4E19 /* AccountViewController.swift */,
-				98E41F032C616355001E4E19 /* AccountTableViewCell.swift */,
-				9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */,
 				9807F7752C5D76FB00955082 /* SettingsViewController.swift */,
 				D9847CF12C52F9E100D0A0C0 /* UpcomingEventsViewController.swift */,
 				D9847D1B2C581C2000D0A0C0 /* PastEventsViewController.swift */,
 				D96BA0DC2C4F225000B44B7D /* UploadPostViewController.swift */,
-				D96BA0AB2C49967F00B44B7D /* SignUpViewController.swift */,
-				54EE3FD92C49883000ACF984 /* LoginViewController.swift */,
+				983848CC2C62BFFD002CC931 /* LocationTableViewCell.swift */,
+				7534262A2C6A7583001CD878 /* FriendsListTableViewCell.swift */,
+				98E41F032C616355001E4E19 /* AccountTableViewCell.swift */,
+				9807F7792C5D7C1A00955082 /* SettingsTableViewCell.swift */,
 				7513BFAE2C52D61300F2D947 /* PostTableViewCell.swift */,
 				D96BA0952C3E3C4000B44B7D /* Assets.xcassets */,
 				D96BA0972C3E3C4000B44B7D /* LaunchScreen.storyboard */,
@@ -247,7 +241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9F0BBE72C6EEA81003A66F9 /* README.pdf in Resources */,
 				D96BA0962C3E3C4000B44B7D /* Assets.xcassets in Resources */,
 				54EE3FDC2C498D7800ACF984 /* GoogleService-Info.plist in Resources */,
 				D96BA0992C3E3C4000B44B7D /* Base in Resources */,
@@ -282,7 +275,6 @@
 				D9F0BBE12C6C26A4003A66F9 /* UINavViewController.swift in Sources */,
 				D96BA08C2C3E3C3F00B44B7D /* SceneDelegate.swift in Sources */,
 				9807F77A2C5D7C1A00955082 /* SettingsTableViewCell.swift in Sources */,
-				54400D382C6D0C3100E90DC0 /* AuthManager.swift in Sources */,
 				7534262F2C6A954C001CD878 /* ExpandedPostViewController.swift in Sources */,
 				753426292C6A7458001CD878 /* FriendsListViewController.swift in Sources */,
 				5440835A2C5C760300AA603B /* CalendarViewController.swift in Sources */,

@@ -107,7 +107,7 @@ class AddNewFriendViewController: UIViewController {
         currentUser.setValue(currentUserFriends, forKey: "friends")
         
         var friendsFriends = friend.value(forKey: "friends") as? [String] ?? []
-        var currentUserUsername = currentUser.value(forKey: "username") as! String
+        let currentUserUsername = currentUser.value(forKey: "username") as! String
         friendsFriends.append(currentUserUsername)
         friend.setValue(friendsFriends, forKey: "friends")
         
